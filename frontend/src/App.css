@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Carattere&family=Caveat+Brush&family=Gamja+Flower&family=Kalam:wght@300;400;700&family=Kaushan+Script&family=Laila:wght@300;400;500;600;700&family=McLaren&display=swap');
+/* 
+font-family: 'Carattere', cursive;
+font-family: 'Caveat Brush', cursive;
+font-family: 'Gamja Flower', sans-serif;
+font-family: 'Kalam', cursive;
+font-family: 'Kaushan Script', cursive;
+font-family: 'Laila', serif;
+font-family: 'McLaren', sans-serif;
+*/
+
+:root {
+  /* --primary-color: #3EAEF4; */
+  --primary-color: #D2AFFF;
+  --secondary-color: #E7C6FF;
+  --heading-color: #0b2727;
+  --highlight-color: #6E23BD;
+  --text-color: #6e7074;
+  --font-name: 'Laila', serif;
+  --subtitle-font-name: 'Gamja Flower', sans-serif;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: var(--font-name); */
+  font-family: var(--font-name) !important;
+  font-size: 1.1rem !important;
+}
+
+section {
+  padding: 50px 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+}
+
+a {
+  text-decoration: none !important;
+  color: unset !important;
+}
+
+ul {
+  padding: 0 !important;
+  list-style: none;
+}
+
+li {
+  padding: 0 !important;
+}
+
+.primary__btn {
+  background: linear-gradient(180deg, #a15deb 35%, #e1a1ff 100%);
+  /* background: linear-gradient(120deg, #C18BFA 0%, #E5ADFF 100%); */
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 0.75rem 1.5rem !important;
+
+}
+
+.primary__btn a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.primary__btn a:hover {
+  color: inherit;
+}
+
+.secondary__btn {
+  background-color: transparent !important;
+  padding: 0.5rem 1.5rem !important;
+  border: 1px solid #6E23BD !important;
+  border-radius: 50px !important;
+  font-weight: 500 !important; 
+}
+
+.secondary__btn a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: var(--heading-color);
+}
+
+.secondary__btn a:hover {
+  color: inherit;
+}
+
+
+/* ============= CUSTOM SCROLL-BAR ============ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2em;
+  background: linear-gradient(120deg, #C18BFA 0%, #E5ADFF 100%);
+  
+}
+
+
+/* ANIMATION */
+@keyframes button-push {
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.btn:hover {
+  animation: button-push 0.3s linear 1;
+}

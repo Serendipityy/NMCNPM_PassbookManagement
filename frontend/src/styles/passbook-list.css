@@ -1,0 +1,11 @@
+.passbook__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.passbook__list {
+    width: 80%;
+}
+

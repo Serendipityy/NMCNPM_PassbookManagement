@@ -1,0 +1,68 @@
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px dashed #fff;
+    gap: .25rem;
+    padding-bottom: 1.75rem;
+}
+
+.logo span {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2rem;
+    text-shadow: 3px 2px #ffffff;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.sidebar {
+    background: linear-gradient(180deg, #d9bbff 0%, #e3c8ff 45%, #ffd2f0 100%);
+    /* min-height: 100vh; */
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    padding: 2rem;
+    height: 100%;
+    min-height: 100vh;
+}
+.nav__item {
+    /* padding: 1.75rem 0 !important; */
+    padding: 1rem 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    font-family: 'McLaren', sans-serif;
+    color: #510B88;
+    letter-spacing: .1rem;
+}
+
+.icon {
+    color: #bf76ff;
+}
+
+.nav__item a {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    /* top right bottom left */
+    padding: .75rem 0 .75rem .5rem;
+    /* background-color: #ffffff; */
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.nav__item a:hover {
+    background: linear-gradient(180deg, #a15deb 35%, #e1a1ff 100%);
+    border-radius: .5rem;
+}
+
+.nav__item a:hover .text,
+.nav__item a:hover .icon {
+    color: #fff;
+}

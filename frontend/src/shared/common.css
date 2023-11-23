@@ -1,0 +1,19 @@
+.common{
+    width: 90%;
+    text-align: center;
+    border-bottom: 2px dashed #C47FFF;
+}
+
+.common h1 {
+    font-size: 3rem;
+    color: #6E23BD;
+    text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
+    font-family: 'Gamja Flower', sans-serif;
+}
+
+.common p {
+    font-family: 'Kalam', cursive;
+    font-size: 1.25rem;
+    color: #605757;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,68 @@
+.home__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.home__wallpaper {
+    width: 100%;
+    height: 230px;
+    /* background-color: pink; */
+    background-color: #ffd3f0;
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    padding: 0 6rem;
+}
+
+.home__wallpaper h3 {
+    font-family: 'Carattere', cursive;
+    line-height: 3.6rem;
+    letter-spacing: .25rem;
+    /* font-weight: 600; */
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.home__wallpaper h3 span {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 3.5rem;
+    color: #6E23BD;
+    /* text-shadow: 3px 2px #fff; */
+    text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
+}
+
+.home__wallpaper img {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home__container{
+    background: url('../assets/images/homeIntroBG.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home__intro h1 {
+    padding: 2rem 6rem 0;
+    font-family: 'Kalam', cursive;
+    color: #6E23BD;
+    text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
+
+
+}
+.home__description {
+    /* background-color: #6E23BD; */
+    width: 70%;
+    padding: 1rem 2rem 0 2rem;
+    margin: auto;
+    border: 2px dashed #6E23BD;
+    font-family: 'Kalam', cursive;
+    font-size: 1.25rem;
+}
+
+.home__description li {
+    margin-bottom: 1rem;
+}

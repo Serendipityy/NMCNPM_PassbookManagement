@@ -1,0 +1,54 @@
+.withdraw__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.withdraw__form {
+    width: 70%;
+    padding: 4rem;
+    background: url('../assets/images/bgNew.jpg') center top/cover no-repeat;
+    border: 3px dashed #6E23BD;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: .5rem;
+}
+
+
+.input__container {
+    width: 100%;
+}
+
+.input {
+    padding: .5rem 0;
+    margin-bottom: .75rem;
+}
+
+.withdraw__content {
+    padding: .5rem 0;
+}
+
+
+.withdraw__content input {
+    width: 100%;
+    padding: .5rem;
+    font-size: 1rem;
+    /* border: none; */
+    border-style: solid;
+    border-color: #d6b0ff;
+    background-color: #f5e8ff;
+    border-radius: .25rem;
+}
+
+.withdraw__content input:focus {
+    outline: none;
+}
+
+.withdraw {
+    width: 25% !important;
+    font-weight: 600 !important;
+    background: #6E23BD !important;
+}
+
