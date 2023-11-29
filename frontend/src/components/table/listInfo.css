@@ -1,0 +1,43 @@
+/* .MuiTableHead-root tr {
+    background-color: var(--primary-color) !important;
+} */
+.css-15wwp11-MuiTableHead-root tr {
+    /* background-color: var(--primary-color) !important; */
+    background-color: #914dda !important;
+}
+
+.css-quj9j6-MuiTable-root {
+    /* border: 1px solid var(--primary-color) !important; */
+}
+
+
+
+.css-1ygcj2i-MuiTableCell-root {
+    font-family: 'Laila', serif !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+.table .type {
+    padding: .25rem 1rem;
+    border-radius: .25rem;
+}
+
+.table .type._DDA {
+    background: #C1E0FD;
+}
+
+.table .type._3 {
+    background: #FFC0B7;
+}
+
+
+.table .type._6 {
+    background: #ABFFC3;
+}
+
+/* Thêm border cho tất cả các ô trong bảng */
+.tableCell {
+    border: 1px solid #914dda !important;
+}

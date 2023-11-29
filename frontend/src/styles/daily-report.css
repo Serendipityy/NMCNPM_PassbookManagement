@@ -1,0 +1,60 @@
+.daily__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+
+}
+
+.daily__section {
+    background-color: #f1ddff;
+    width: 90%;
+    padding: 2rem;
+    align-items: center;
+    border-radius: .5rem;
+    min-height: 35rem;
+
+}
+
+
+
+.input__container {
+    width: 100%;
+
+}
+
+.input__text {
+    margin-bottom: 0;
+}
+
+.daily__content {
+    display: flex;
+    align-items: center;
+}
+
+.daily__content input {
+    width: 50%;
+    padding: .5rem;
+    font-size: 1rem;
+    border-style: solid;
+    border-color: #d6b0ff;
+    background-color: #fff;
+    border-radius: .25rem;
+    margin-right: .5rem;
+}
+
+.button {
+    font-weight: 600;
+    text-align: center;
+    background-color: #bf76ff;
+    color: #fff;
+    border: none;
+    border-radius: .25rem;
+    margin-left: 2.5rem;
+    display: flex;
+}
+
+.daily__info {
+    margin-top: 4rem;
+}
