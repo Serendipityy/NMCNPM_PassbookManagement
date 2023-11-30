@@ -7,9 +7,9 @@ import ListDailyInfo from '../components/table/ListDailyInfo'
 
 function DailyReport() {
     const [date, setDate] = useState('')
-    let tempDate
     const handleSubmit = e => {
         e.preventDefault()
+        const tempDate = e.target[0].value
         setDate(tempDate)
     }
     return (
@@ -27,7 +27,6 @@ function DailyReport() {
                                     placeholder='Enter date'
                                     required
                                     id='date'
-                                    onChange={(e) => tempDate = e.target.value}
                                 />
 
                                 <Button type='submit' className='primary__btn button'>
