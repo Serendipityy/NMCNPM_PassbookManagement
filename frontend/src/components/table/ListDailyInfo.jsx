@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import './listInfo.css'
 
 
-const ListDailyInfo = () => {
+const ListDailyInfo = ({ date }) => {
 
     const rows = [
         {
@@ -18,7 +18,7 @@ const ListDailyInfo = () => {
             totalRevenue: '3000 USD',
             totalExpenditure: '6000 USD',
             difference: '3000 USD',
-            date: ''
+            date: '2023-11-11'
         },
         {
             id: 2,
@@ -26,14 +26,14 @@ const ListDailyInfo = () => {
             totalRevenue: '3000 USD',
             totalExpenditure: '6000 USD',
             difference: '3000 USD',
-            date: ''
+            date: '2023-11-11'
         }, {
             id: 3,
             type: '6 months',
             totalRevenue: '3000 USD',
             totalExpenditure: '6000 USD',
             difference: '3000 USD',
-            date: ''
+            date: '2023-11-10'
         }
     ];
 
@@ -50,21 +50,23 @@ const ListDailyInfo = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell className="tableCell">{row.id}</TableCell>
-                            <TableCell className="tableCell">
-                                <span className={`type _${row.type}`}>{row.type}</span>
-                            </TableCell>
-                            <TableCell className="tableCell">{row.totalRevenue}</TableCell>
-                            <TableCell className="tableCell">{row.totalExpenditure}</TableCell>
-                            <TableCell className="tableCell">{row.difference}</TableCell>
-                        </TableRow>
-                    ))}
+                    {rows
+                        .filter((row) => row.date === date)
+                        .map((row) => (
+                            <TableRow key={row.id}>
+                                <TableCell className="tableCell">{row.id}</TableCell>
+                                <TableCell className="tableCell">
+                                    <span className={`type _${row.type}`}>{row.type}</span>
+                                </TableCell>
+                                <TableCell className="tableCell">{row.totalRevenue}</TableCell>
+                                <TableCell className="tableCell">{row.totalExpenditure}</TableCell>
+                                <TableCell className="tableCell">{row.difference}</TableCell>
+                            </TableRow>
+                        ))}
                 </TableBody>
             </Table>
         </TableContainer>
-    )
-}
+    );
+};
 
 export default ListDailyInfo

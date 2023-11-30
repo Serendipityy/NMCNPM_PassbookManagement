@@ -8,31 +8,39 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './listInfo.css'
 
-const ListlyInfo = () => {
+const ListlyInfo = ({ data }) => {
 
     const rows = [
         {
             id: 1,
-            date: '10/11/2023',
+            date: '2023-11-11',
             open: '3000 USD',
             close: '6000 USD',
-            difference: '3000 USD'
+            difference: '3000 USD',
+            type: 'DDA'
         },
         {
             id: 2,
-            date: '15/11/2023',
+            date: '2023-11-15',
             open: '3000 USD',
             close: '6000 USD',
-            difference: '3000 USD'
+            difference: '3000 USD',
+            type: '3-months'
         },
         {
             id: 3,
-            date: '16/11/2023',
+            date: '2023-10-16',
             open: '3000 USD',
             close: '6000 USD',
-            difference: '3000 USD'
+            difference: '3000 USD',
+            type: '6-months'
+
         },
     ];
+
+    rows.map(row => {
+        row.month = row.date.split('-')[1]
+    })
 
     return (
         <TableContainer component={Paper} className='table'>
@@ -47,15 +55,17 @@ const ListlyInfo = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell className="tableCell">{row.id}</TableCell>
-                            <TableCell className="tableCell">{row.date}</TableCell>
-                            <TableCell className="tableCell">{row.open}</TableCell>
-                            <TableCell className="tableCell">{row.close}</TableCell>
-                            <TableCell className="tableCell">{row.difference}</TableCell>
-                        </TableRow>
-                    ))}
+                    {rows
+                        .filter((row) => row.month === data.month && row.type === data.type)
+                        .map((row) => (
+                            <TableRow key={row.id}>
+                                <TableCell className="tableCell">{row.id}</TableCell>
+                                <TableCell className="tableCell">{row.date}</TableCell>
+                                <TableCell className="tableCell">{row.open}</TableCell>
+                                <TableCell className="tableCell">{row.close}</TableCell>
+                                <TableCell className="tableCell">{row.difference}</TableCell>
+                            </TableRow>
+                        ))}
                 </TableBody>
             </Table>
         </TableContainer>
