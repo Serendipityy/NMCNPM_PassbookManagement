@@ -75,7 +75,7 @@ const Create = () => {
 
             <div className="input d-flex gap-5">
               <div className="w-50">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Full name</label>
                 <FormGroup className="content">
                   <input
                     type="text"

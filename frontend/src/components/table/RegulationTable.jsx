@@ -6,8 +6,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { getListTerm } from "../../services/userService";
+import { getListTerm, deleteType } from "../../services/userService";
 import ModalPassbook from "../../pages/ModalPassbook";
+import { Button } from "reactstrap";
 import "./table.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 const RegulationTable = () => {
@@ -38,11 +39,21 @@ const RegulationTable = () => {
     setIsOpenModal(false);
   };
   const handleChange = (item) => {
-    // console.log("check item: ", item);
+    console.log("check item: ", item);
     setIsOpenModal(true);
     setDataModal({ data: item, state: 1 });
   };
-  const handleDelete = (item) => {};
+  const handleDelete = async (item) => {
+    try {
+      await deleteType(item.type);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleCreate = async () => {
+    setIsOpenModal(true);
+    setDataModal({ state: 0 });
+  };
   return (
     <>
       <TableContainer component={Paper} className="table">
@@ -70,11 +81,7 @@ const RegulationTable = () => {
                           : "6 months"
                       }`}
                     >
-                      {item.type === 0
-                        ? "DDA"
-                        : item.type === 1
-                        ? "3 months"
-                        : "6 months"}
+                      {item.name}
                     </span>
                   </TableCell>
                   <TableCell className="tableCell">
@@ -90,6 +97,9 @@ const RegulationTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button className="btn primary__btn create mt-2" onClick={handleCreate}>
+        Create
+      </Button>
       {isOpenModal && (
         <ModalPassbook
           show={isOpenModal}

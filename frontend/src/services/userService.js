@@ -62,7 +62,32 @@ const getMonthlyReport = async (data) => {
 const getListTerm = async () => {
   return await axios.get(`http://localhost:8080/api/term`);
 };
-const deleteType = async () => {};
+const changeType = async (data) => {
+  const formData = new FormData();
+  formData.append("monthsOfTerm", data.type);
+  formData.append("interestRate", data.interestRate);
+  formData.append("minDeposit", data.minDepo);
+  formData.append("minDepositTime", data.minTime);
+  return await axios.put("http://localhost:8080/api/term", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Đặt kiểu dữ liệu là multipart/form-data
+    },
+  });
+};
+const deleteType = async (type) => {
+  return await axios.delete(`http://localhost:8080/api/term/${type}}`);
+};
+const addNewType = async (data) => {
+  const formData = new FormData();
+  formData.append("monthsOfTerm", data.type);
+  formData.append("interestRate", data.interestRate);
+  formData.append("minDeposit", data.minDepo);
+  return await axios.post("http://localhost:8080/api/term", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Đặt kiểu dữ liệu là multipart/form-data
+    },
+  });
+};
 export {
   createNewPassbook,
   listPassbook,
@@ -71,5 +96,7 @@ export {
   getDailyReport,
   getMonthlyReport,
   getListTerm,
+  changeType,
   deleteType,
+  addNewType,
 };
