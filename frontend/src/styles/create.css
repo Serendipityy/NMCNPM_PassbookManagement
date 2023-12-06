@@ -16,6 +16,10 @@
     border-radius: 1.5rem;
 }
 
+.form label {
+    font-weight: 500;
+    color: #510B88;
+}
 
 .input__container {
     width: 100%;
@@ -34,6 +38,21 @@
     border-bottom: 2px solid #7330bc;
 }
 
+.content select {
+    width: 100%;
+    background: unset;
+    border: none;
+    /* padding: 1.5px 6px; */
+    padding: .2rem .5rem;
+
+    font-size: 1rem;
+}
+
+.content option {
+    background: rgb(255, 223, 254);
+    border: none;
+}
+
 .content input {
     background-color: unset;
     width: 100%;
@@ -42,7 +61,8 @@
     font-size: 1rem;
 }
 
-.content input:focus {
+.content input:focus,
+.content select:focus {
     outline: none;
 }
 
@@ -52,9 +72,9 @@
 }
 
 
-input[type=date] {
+/* input::placeholder{
     color: rgb(133, 125, 125);
-}
+} */
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: url('../assets/images/Vector.png');

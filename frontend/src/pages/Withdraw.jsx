@@ -82,7 +82,7 @@ const Withdraw = () => {
               </div>
 
               <div className="w-50">
-                <label htmlFor="withdraw">withdraw</label>
+                <label htmlFor="withdraw">Withdraw</label>
                 <FormGroup className="withdraw__content">
                   <input
                     type="number"
