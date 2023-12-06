@@ -42,7 +42,6 @@
 }
 
 .nav__item {
-    /* padding: 1.75rem 0 !important; */
     padding: 1rem 0 !important;
     display: flex;
     align-items: center;
@@ -80,16 +79,16 @@
 }
 
 .submenu {
+    background: #f6beff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* :)) */
+    transform: translateY(-1rem); 
 }
 
 
 .submenu .nav__item {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #db8bfe;
     height: 3.4rem;
-    gap: .5rem;
-
 }
 
 .submenu .nav__item:hover {
@@ -101,11 +100,3 @@
     border-bottom: none;
 }
 
-.submenu .nav__item a {
-    color: #555;
-    text-decoration: none;
-    display: block;
-    padding: 8px 20px;
-    /* Adjust padding as needed */
-    transition: background-color 0.3s ease;
-}

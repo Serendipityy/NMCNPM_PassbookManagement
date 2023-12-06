@@ -44,3 +44,8 @@ tbody tr:nth-child(2n) {
 .table .type._6 {
     background: #ABFFC3;
 }
+
+.change__btn {
+    width: 15%;
+    font-weight: 600 !important;
+}
