@@ -1,0 +1,7 @@
+.change {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.delete {
+  cursor: pointer;
+}

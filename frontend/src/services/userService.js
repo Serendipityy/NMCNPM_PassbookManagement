@@ -63,11 +63,13 @@ const getListTerm = async () => {
   return await axios.get(`http://localhost:8080/api/term`);
 };
 const changeType = async (data) => {
+  // console.log("dataalo???:", data.type);
   const formData = new FormData();
-  formData.append("monthsOfTerm", data.type);
+  formData.append("type", data.type);
   formData.append("interestRate", data.interestRate);
   formData.append("minDeposit", data.minDepo);
   formData.append("minDepositTime", data.minTime);
+  // console.log("check form data: ", formData);
   return await axios.put("http://localhost:8080/api/term", formData, {
     headers: {
       "Content-Type": "multipart/form-data", // Đặt kiểu dữ liệu là multipart/form-data
@@ -75,11 +77,12 @@ const changeType = async (data) => {
   });
 };
 const deleteType = async (type) => {
-  return await axios.delete(`http://localhost:8080/api/term/${type}}`);
+  console.log(type);
+  return await axios.delete(`http://localhost:8080/api/term/${type}`);
 };
 const addNewType = async (data) => {
   const formData = new FormData();
-  formData.append("monthsOfTerm", data.type);
+  formData.append("monthsOfTerm", data.typeName);
   formData.append("interestRate", data.interestRate);
   formData.append("minDeposit", data.minDepo);
   return await axios.post("http://localhost:8080/api/term", formData, {

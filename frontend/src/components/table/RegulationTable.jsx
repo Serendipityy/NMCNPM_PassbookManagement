@@ -11,28 +11,28 @@ import ModalPassbook from "../../pages/ModalPassbook";
 import { Button } from "reactstrap";
 import "./table.css";
 import "@fortawesome/fontawesome-free/css/all.css";
+import "./RegulationTable.css";
 const RegulationTable = () => {
   const [data, setData] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dataModal, setDataModal] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiData = await getListTerm();
-        if (+apiData.status === 200) {
-          console.log("check term: ", apiData);
-          // console.log("check data: ", apiData.data);
-          if (apiData.data) {
-            setData(apiData.data);
-          }
-          console.log("data: ", data);
+  const fetchData = async () => {
+    try {
+      const apiData = await getListTerm();
+      if (+apiData.status === 200) {
+        console.log("check term: ", apiData);
+        // console.log("check data: ", apiData.data);
+        if (apiData.data) {
+          setData(apiData.data);
         }
-      } catch (error) {
-        // Handle errors as needed
-        console.log(error);
+        console.log("data: ", data);
       }
-    };
-
+    } catch (error) {
+      // Handle errors as needed
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
   const handleCloseModal = () => {
@@ -46,6 +46,7 @@ const RegulationTable = () => {
   const handleDelete = async (item) => {
     try {
       await deleteType(item.type);
+      await fetchData();
     } catch (e) {
       console.log(e);
     }
@@ -70,7 +71,6 @@ const RegulationTable = () => {
               data.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell className="tableCell">{index + 1}</TableCell>
-
                   <TableCell className="tableCell">
                     <span
                       className={`type _${
@@ -85,10 +85,10 @@ const RegulationTable = () => {
                     </span>
                   </TableCell>
                   <TableCell className="tableCell">
-                    <span onClick={() => handleChange(item)}>
+                    <span onClick={() => handleChange(item)} className="change">
                       <i className="fas fa-user-edit"></i>
                     </span>
-                    <span onClick={() => handleDelete(item)}>
+                    <span onClick={() => handleDelete(item)} className="delete">
                       <i className="fa-solid fa-trash-can"></i>
                     </span>
                   </TableCell>
@@ -105,6 +105,7 @@ const RegulationTable = () => {
           show={isOpenModal}
           handleCloseModal={handleCloseModal}
           dataModal={dataModal}
+          fetchData={fetchData}
         />
       )}
     </>

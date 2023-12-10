@@ -15,6 +15,7 @@ import { addNewType, changeType } from "../services/userService";
 const ModalPassbook = (props) => {
   const [data, setData] = useState({
     type: "",
+    typeName: "",
     minDepo: "",
     minTime: "",
     interestRate: "",
@@ -27,7 +28,8 @@ const ModalPassbook = (props) => {
       props.dataModal
     ) {
       setData({
-        type: props.dataModal.data.name,
+        type: props.dataModal.data.type,
+        typeName: props.dataModal.data.name,
         minDepo: props.dataModal.data.minDeposit,
         minTime: props.dataModal.data.daysWithdrawn,
         interestRate: props.dataModal.data.interestRate,
@@ -45,15 +47,18 @@ const ModalPassbook = (props) => {
         let response = await addNewType(data);
         console.log("check response: ", response);
         toast.success("Created successfully");
+        props.fetchData();
       } catch (e) {
         console.log(e);
         toast.error(e.response.data.message);
       }
     } else {
       try {
+        // console.log("data???: ", data);
         let response = await changeType(data);
         console.log("check response: ", response);
-        toast.success("Created successfully");
+        toast.success("Update successfully");
+        props.fetchData();
       } catch (e) {
         console.log(e);
         toast.error(e.response.data.message);
@@ -64,7 +69,6 @@ const ModalPassbook = (props) => {
   // const handleSubmit
   return (
     <div>
-      {/* {console.log("check props:", props)} */}
       {/* {console.log("check state: ", data)} */}
       <Modal isOpen={props.show} toggle={props.handleCloseModal}>
         <ModalHeader toggle={props.handleCloseModal}>
@@ -78,8 +82,8 @@ const ModalPassbook = (props) => {
               <Label>Type(Months)</Label>
               <Input
                 type="text"
-                id="type"
-                value={data.type}
+                id="typeName"
+                value={data.typeName}
                 onChange={handleChange}
               />
             </FormGroup>
