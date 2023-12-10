@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import logo from '../../assets/images/finance_1992217.png'
 import './sidebar.css'
 // https://www.npmjs.com/package/reactstrap
@@ -11,7 +11,7 @@ import { FaListAlt } from 'react-icons/fa'
 import { BiSolidReport, BiSolidNote } from 'react-icons/bi'
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
-
+import { IoIosArrowForward } from "react-icons/io";
 import { NavLink, Link } from 'react-router-dom'
 
 const NAV__LINKS = [
@@ -47,10 +47,12 @@ const NAV__LINKS = [
         submenus: [
             {
                 display: 'Daily Turnover',
+                icon: <IoIosArrowForward />,
                 url: '/reports/daily-turnover',
             },
             {
                 display: 'Monthly Close/Open',
+                icon: <IoIosArrowForward />,
                 url: '/reports/monthly-reports',
             },
         ],
@@ -61,14 +63,32 @@ const NAV__LINKS = [
         url: '/regulation-changes',
     },
 ]
+
 const Sidebar = () => {
-    const sidebarRef = useRef(null)
+    const sidebarRef = useRef(null);
+    const menuRef = useRef(null);
+    const [activeMenu, setActiveMenu] = useState(null);
 
-    const menuRef = useRef(null)
+    // const toggleSubMenu = (index) => {
+    //     setActiveMenu((prevActiveMenu) => (prevActiveMenu === index ? null : index));
+    // };
 
+    const toggleSubMenu = (index) => {
+        setActiveMenu((prevActiveMenu) => {
+            // Check if the clicked item is a submenu
+            if (NAV__LINKS[index].submenus) {
+                return prevActiveMenu === index ? null : index;
+            } else {
+                // If it's not a submenu, set activeMenu to null
+                return null;
+            }
+        });
+    };
+
+    
     return (
         <div className='sidebar' ref={sidebarRef}>
-            <div className='logo' >
+            <div className='logo' >                 
                 <img
                     src={logo}
                     alt='logo'
@@ -76,34 +96,34 @@ const Sidebar = () => {
                 <span>EarnTogether</span>
             </div>
 
-
             <div className='nav__menu' ref={menuRef}>
                 <ul className='nav__list'>
                     {NAV__LINKS.map((item, index) => (
-                        <>
-                            <li className='nav__item' key={index}>
+                        <React.Fragment key={index}>
+                            <li className='nav__item' onClick={() => toggleSubMenu(index)}>
                                 <NavLink
                                     to={item.url}
-                                    className={(navClass) => (navClass.isActive ? 'active' : '')}
+                                    // className={(navClass) => (navClass.isActive ? 'active' : '')}
+                                    className={(navClass) => (navClass.isActive && (!item.submenus || activeMenu === null) ? 'active' : '')}
                                 >
                                     <span className='icon'>{item.icon}</span>
                                     <span className='text'>{item.display}</span>
                                 </NavLink>
-
                             </li>
-                            <ul className='submenu'>
-                                {item.submenus && (
-                                    item.submenus.map((submenuItem, subIndex) => (
+                            {activeMenu === index && item.submenus && (
+                                <ul className='submenu'>
+                                    {item.submenus.map((submenuItem, subIndex) => (
                                         <li className='nav__item' key={subIndex}>
                                             <NavLink to={submenuItem.url}>
+                                                <span className='icon'>{submenuItem.icon}</span>
                                                 <span className='text'>{submenuItem.display}</span>
                                             </NavLink>
                                         </li>
-                                    ))
-
-                                )}
-                            </ul>
-                        </>))}
+                                    ))}
+                                </ul>
+                            )}
+                        </React.Fragment>
+                    ))}
                 </ul>
             </div>
         </div>
@@ -111,3 +131,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar
+
+

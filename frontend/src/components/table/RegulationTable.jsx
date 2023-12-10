@@ -97,7 +97,7 @@ const RegulationTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button className="btn primary__btn create mt-2" onClick={handleCreate}>
+      <Button className="btn primary__btn change__btn mt-2" onClick={handleCreate}>
         Create
       </Button>
       {isOpenModal && (

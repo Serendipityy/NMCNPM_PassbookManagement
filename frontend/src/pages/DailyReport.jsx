@@ -39,7 +39,7 @@ function DailyReport() {
         <Common title={"Daily Turnover Reports"} />
         <div className="daily__section">
           <Form className="daily__form" onSubmit={handleSubmit}>
-            <div className="input__container">
+            <div className="input__container daily">
               <label htmlFor="date">Enter date for report</label>
               <FormGroup className="daily__content">
                 <input
@@ -50,7 +50,7 @@ function DailyReport() {
                   onChange={handleChange}
                 />
 
-                <Button type="submit" className="primary__btn button">
+                <Button type="submit" className="btn primary__btn button">
                   Confirm
                 </Button>
               </FormGroup>

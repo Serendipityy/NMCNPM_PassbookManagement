@@ -16,6 +16,10 @@
     border-radius: .5rem;
 }
 
+.withdraw__form label {
+    font-weight: 500;
+    color: #510B88;
+}
 
 .input__container {
     width: 100%;

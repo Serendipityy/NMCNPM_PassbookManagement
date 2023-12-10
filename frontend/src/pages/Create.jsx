@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Button } from "reactstrap";
+import { Form, FormGroup, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import Common from "../shared/Common";
 import "../styles/create.css";
@@ -62,14 +62,27 @@ const Create = () => {
               <div className="w-50">
                 <label htmlFor="type">Type</label>
                 <FormGroup className="content">
-                  <input
+                  {/* <input
                     type="text"
                     placeholder="Enter type of passbook"
                     required
                     id="type"
                     onChange={handleChange}
-                  />
+                  /> */}
+                  <select 
+                    type="select" 
+                    placeholder="Choose type of passbook"
+                    required 
+                    id="type"
+                    onChange={handleChange}
+                  >
+                    <option value="">Select type of passbook</option>
+                    <option value="0">DDA</option>
+                    <option value="1">3 months</option>
+                    <option value="2">6 months</option>
+                  </select>
                 </FormGroup>
+                
               </div>
             </div>
 

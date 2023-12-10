@@ -1,0 +1,50 @@
+.modal-content {
+    background: #eed7ff !important;
+    width: 800px !important;
+    height: 500px;
+    padding: .5rem 2rem;
+}
+
+.modal-header {
+    border-bottom: .1rem #6E23BD dashed !important;
+}
+
+.modal-header h5 {
+    font-family: 'Gamja Flower', sans-serif;
+    font-size: 2rem;
+    color: #6E23BD;
+    text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
+}
+
+.modal-body {
+    padding: 2rem !important;
+}
+
+.change__content input {
+    padding: .5rem 0;
+    margin-bottom: 1.25rem;
+    /* border-style: solid; */
+    background-color: #f5e8ff;
+    border-radius: .25rem;
+    border: .125rem solid #d6b0ff;
+}
+
+
+.change__content input:focus {
+    outline: none !important;
+}
+
+
+.modal-footer {
+    border-top: .1rem #6E23BD dashed !important;
+    gap: 1rem;
+}
+
+.change__create {
+    width: 15%;
+    font-weight: 600;
+}
+
+.change__cancel {
+    color: #6E23BD !important;
+}
