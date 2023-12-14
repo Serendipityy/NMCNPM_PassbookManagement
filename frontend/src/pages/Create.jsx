@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import Common from "../shared/Common";
@@ -6,6 +6,7 @@ import "../styles/create.css";
 import { FaCalendarWeek } from "react-icons/fa";
 import { createNewPassbook } from "../services/userService";
 import { toast } from "react-toastify";
+import { getListTerm } from "../services/userService";
 const Create = () => {
   const [credentials, setCredentials] = useState({
     code: "",
@@ -16,7 +17,25 @@ const Create = () => {
     date: "",
     deposit: "",
   });
-
+  const [listTerm, setListTerm] = useState();
+  const fetchData = async () => {
+    try {
+      const apiData = await getListTerm();
+      if (+apiData.status === 200) {
+        console.log("check term: ", apiData);
+        // console.log("check data: ", apiData.data);
+        if (apiData.data) {
+          setListTerm(apiData.data);
+        }
+      }
+    } catch (error) {
+      // Handle errors as needed
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleChange = (e) => {
     // console.log(e.target.value);
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -69,20 +88,24 @@ const Create = () => {
                     id="type"
                     onChange={handleChange}
                   /> */}
-                  <select 
-                    type="select" 
+                  <select
+                    type="select"
                     placeholder="Choose type of passbook"
-                    required 
+                    required
                     id="type"
                     onChange={handleChange}
                   >
                     <option value="">Select type of passbook</option>
-                    <option value="0">DDA</option>
-                    <option value="1">3 months</option>
-                    <option value="2">6 months</option>
+                    {/* {listTerm && console.log("check bug:", listTerm[0].name)} */}
+                    {listTerm &&
+                      listTerm.map((item) => (
+                        <option value={item.type}>{item.name}</option>
+                      ))}
+                    {/* <option value="0">DDA</option>
+                      <option value="1">3 months</option>
+                      <option value="2">6 months</option> */}
                   </select>
                 </FormGroup>
-                
               </div>
             </div>
 

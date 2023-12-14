@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/monthly-report.css";
 import Common from "../shared/Common";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import ListMonthlyInfo from "../components/table/ListMonthlyInfo";
-import { getMonthlyReport } from "../services/userService";
+import { getMonthlyReport, getListTerm } from "../services/userService";
 function MonthlyReport() {
   const [formData, setFormData] = useState({ type: "", month: "" });
   const [data, setData] = useState([]);
+  const [listTerm, setListTerm] = useState();
+  const fetchData = async () => {
+    try {
+      const apiData = await getListTerm();
+      if (+apiData.status === 200) {
+        console.log("check term: ", apiData);
+        // console.log("check data: ", apiData.data);
+        if (apiData.data) {
+          setListTerm(apiData.data);
+        }
+      }
+    } catch (error) {
+      // Handle errors as needed
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const tempMonth = e.target[1].value;
@@ -44,9 +63,13 @@ function MonthlyReport() {
               <label htmlFor="passbookType">Choose type of passbook</label>
               <Input type="select" id="type" required onChange={handleChange}>
                 <option value="">Select type of passbook</option>
-                <option value="0">DDA</option>
+                {listTerm &&
+                  listTerm.map((item) => (
+                    <option value={item.type}>{item.name}</option>
+                  ))}
+                {/* <option value="0">DDA</option>
                 <option value="1">3 months</option>
-                <option value="2">6 months</option>
+                <option value="2">6 months</option> */}
               </Input>
             </FormGroup>
             <FormGroup className="monthly__content">
