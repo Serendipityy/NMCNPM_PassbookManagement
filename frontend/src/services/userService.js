@@ -23,6 +23,11 @@ const createNewPassbook = async (data) => {
 const listPassbook = () => {
   return axios.get("http://localhost:8080/api/passbook/tracuu");
 };
+const paginatePassbook = (page) => {
+  return axios.get(
+    `http://localhost:8080/api/passbook/lookup?page=${page}&per_page=3`
+  );
+};
 const putMoney = async (data) => {
   const formData = new FormData();
   formData.append("passbookCode", data.passbookCode);
@@ -102,4 +107,5 @@ export {
   changeType,
   deleteType,
   addNewType,
+  paginatePassbook,
 };
