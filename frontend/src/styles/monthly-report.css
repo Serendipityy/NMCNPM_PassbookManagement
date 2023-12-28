@@ -1,4 +1,4 @@
-.monthly-report__container {
+.monthly__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,16 +12,18 @@
     align-items: center;
     border-radius: .5rem;
     min-height: 35rem;
-
 }
 
-.input-container {
+.input__container .monthly label {
+    font-weight: 500;
+    color: #510B88;
+}
+
+.monthly {
     display: flex;
-    gap: 2rem;
     align-items: center;
+    gap: 2rem;
 }
-
-
 
 .input__text {
     margin-bottom: 0;
@@ -29,25 +31,33 @@
 
 .monthly__content {
     display: flex;
-    /* align-items: center; */
-    flex-direction: column;
-}
-
-.monthly__content label {
-    margin-left: 0;
+    align-items: center;
+    gap: 2rem;
 }
 
 
+.monthly__content input,
+.monthly__content select {
+    width: 100%;
+    font-size: 1rem;
+    border: 2px solid #d6b0ff;
+    background-color: #fff;
+    border-radius: .25rem;
+}
 
-.button {
+/* .button {
     font-weight: 600;
     background-color: #bf76ff;
     color: #fff;
     border: none;
     border-radius: .25rem;
     margin-left: 2.5rem;
+} */
+.monthly__btn {
+    font-weight: 600 !important;
+    margin-top: .5rem;
 }
 
 .monthly__info {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }

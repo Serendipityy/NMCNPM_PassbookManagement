@@ -4,6 +4,7 @@ import Common from "../shared/Common";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import ListMonthlyInfo from "../components/table/ListMonthlyInfo";
 import { getMonthlyReport, getListTerm } from "../services/userService";
+import { Select } from "@mui/material";
 function MonthlyReport() {
   const [formData, setFormData] = useState({ type: "", month: "" });
   const [data, setData] = useState([]);
@@ -54,50 +55,33 @@ function MonthlyReport() {
     }));
   };
   return (
-    <div className="monthly-report__container">
+    <div className="monthly__container">
       <Common title={"Monthly Open/Close Report"} />
       <div className="monthly__section">
         <Form className="monthly__form" onSubmit={handleSubmit}>
-          <div className="input-container">
-            <FormGroup className="monthly__content">
-              <label htmlFor="passbookType">Choose type of passbook</label>
-              <Input type="select" id="type" required onChange={handleChange}>
-                <option value="">Select type of passbook</option>
-                {listTerm &&
-                  listTerm.map((item) => (
-                    <option value={item.type}>{item.name}</option>
-                  ))}
-                {/* <option value="0">DDA</option>
-                <option value="1">3 months</option>
-                <option value="2">6 months</option> */}
-              </Input>
-            </FormGroup>
-            <FormGroup className="monthly__content">
-              <label htmlFor="month">Choose month</label>
-              <Input type="month" required id="month" onChange={handleChange} />
-              {/* <Input
-                                type='select'
-                                id='month'
-                                required
-                            >
-                                <option value=''>Select month</option>
-                                <option value='1'>January</option>
-                                <option value='2'>February</option>
-                                <option value='3'>March</option>
-                                <option value='4'>April</option>
-                                <option value='5'>May</option>
-                                <option value='6'>June</option>
-                                <option value='7'>July</option>
-                                <option value='8'>August</option>
-                                <option value='9'>September</option>
-                                <option value='10'>October</option>
-                                <option value='11'>November</option>
-                                <option value='12'>December</option>
-                            </Input> */}
-            </FormGroup>
+          <div className="input__container monthly">
+            <div className="monthly__content">
+              <FormGroup >
+                <label htmlFor="passbookType" className="mb-1">Choose type of passbook</label>
+                <Input type="select" id="type" required onChange={handleChange}>
+                  <option value="">Select type of passbook</option>
+                  {listTerm &&
+                    listTerm.map((item) => (
+                      <option value={item.type}>{item.name}</option>
+                    ))}
+                  {/* <option value="0">DDA</option>
+                  <option value="1">3 months</option>
+                  <option value="2">6 months</option> */}
+                </Input>
+              </FormGroup>
+              <FormGroup >
+                <label htmlFor="month" className="mb-1">Choose month</label>
+                <Input type="month" required id="month" onChange={handleChange} />
+              </FormGroup>
+            </div>
 
-            <Button type="submit" className="primary__btn button">
-              Confirm
+            <Button type="submit" className="btn primary__btn monthly__btn">
+                Confirm
             </Button>
           </div>
         </Form>
