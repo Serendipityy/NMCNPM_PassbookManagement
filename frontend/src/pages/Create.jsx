@@ -99,7 +99,7 @@ const Create = () => {
                     {/* {listTerm && console.log("check bug:", listTerm[0].name)} */}
                     {listTerm &&
                       listTerm.map((item) => (
-                        <option value={item.type}>{item.name}</option>
+                        <option key={item.type} value={item.type}>{item.name}</option>
                       ))}
                     {/* <option value="0">DDA</option>
                       <option value="1">3 months</option>
@@ -179,7 +179,7 @@ const Create = () => {
             </div>
           </div>
 
-          <Button type="submit" className="btn primary__btn create mt-2">
+          <Button type="submit" className="btn primary__btn create">
             Create
           </Button>
         </Form>
