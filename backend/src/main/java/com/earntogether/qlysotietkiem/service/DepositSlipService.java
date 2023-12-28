@@ -1,0 +1,66 @@
+package com.earntogether.qlysotietkiem.service;
+
+import com.earntogether.qlysotietkiem.dto.DepositSlipDTO;
+import com.earntogether.qlysotietkiem.entity.Customer;
+import com.earntogether.qlysotietkiem.exception.DataNotValidException;
+import com.earntogether.qlysotietkiem.exception.ResourceNotFoundException;
+import com.earntogether.qlysotietkiem.model.DepositSlipModel;
+import com.earntogether.qlysotietkiem.repository.DepositSlipRepository;
+import com.earntogether.qlysotietkiem.repository.PassbookRepository;
+import com.earntogether.qlysotietkiem.utils.converter.DepositConverter;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+@AllArgsConstructor
+public class DepositSlipService {
+    private DepositSlipRepository depositSlipRepository;
+    private PassbookRepository passbookRepository;
+    private CommonCustomerPassbookService commonCusPassbookService;
+
+    public List<DepositSlipModel> getAllDepositSlip(){
+        return depositSlipRepository.findAll().stream()
+                .map(DepositConverter::convertEntityToModel)
+                .toList();
+    }
+
+    public void insertDepositSlip(DepositSlipDTO depositSlipDto) {
+        var customer = commonCusPassbookService.getCustomerByNameAndPassbookCode(
+                depositSlipDto.customerName(), depositSlipDto.passbookCode())
+                .orElseThrow( () -> new ResourceNotFoundException(
+                        "Does not exist customer: " + depositSlipDto.customerName() +
+                                " with passbook code: " + depositSlipDto.passbookCode()));
+        // Kiểm tra loại tiết kiệm
+        var passbook = passbookRepository.findByPassbookCode(customer.getPassbookCode())
+                .orElseThrow(() -> new ResourceNotFoundException( "Not found " +
+                        "passbook with passbook code: " + customer.getPassbookCode()));
+        var term = passbook.getTerm();
+        if(term.getType() != 0){
+            throw new DataNotValidException("Only accept deposits " +
+                        "for non-term passbook");
+        }
+        if(depositSlipDto.money().compareTo(term.getMinDeposit()) < 0){
+            throw new DataNotValidException("Deposit amount cannot be " +
+              "less than minimum deposit amount of " + term.getMinDeposit());
+        }
+        if(depositSlipDto.depositDate().isAfter(LocalDate.now())){
+            throw new DataNotValidException("Deposit date cannot" +
+                        " exceed current date");
+        }
+
+        var moneyAdded = passbook.getMoney().add(depositSlipDto.money());
+        commonCusPassbookService.updateMoneyByPassbookCode(
+                                    passbook.getPassbookCode(), moneyAdded);
+        var depositSlip = DepositConverter.convertDTOtoEntity(depositSlipDto,
+                                                              passbook);
+        depositSlipRepository.save(depositSlip);
+        System.out.println("-> Inserted " + depositSlip);
+    }
+
+    public void deleteAllDepositSlip() {
+        depositSlipRepository.deleteAll();
+    }
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passbook</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        form {
+            outline: 1px solid rgb(77, 77, 77);
+            padding: .5rem;
+        }
+
+        a.showLink {
+            margin: 1rem 0;
+
+            &:after {
+                content: "(GET method: " attr(href) ")";
+                font-weight: bold;
+                color: rgb(222, 75, 75);
+            }
+        }
+
+        .bg-pink {
+            background-color: rgba(248, 203, 255, 0.748);
+
+            &:hover {
+                background-color: rgba(255, 136, 239, 0.827);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container pt-4">
+    <h1>Đăng kí sổ tiết kiệm</h1>
+    <a href="http://localhost:8080/api/customer-passbook" class="showLink btn bg-pink" target="_blank">
+        Xem danh sách Khách hàng</a>
+    <a href="http://localhost:8080/api/passbook" class="showLink btn bg-pink" target="_blank">
+        Xem danh sách sổ Tiết kiệm</a>
+    <form action="http://localhost:8080/api/customer-passbook" method="POST">
+        <legend>POST method</legend>
+        <label for="">Mã số:</label>
+        <input type="text" name="passbookCode" required>
+        <label for="name">Khách hàng: </label>
+        <input type="text" name="name" required>
+        <label for="maso">Địa chỉ:</label>
+        <input type="text" name="address" required>
+        <br>
+        <label for="">Số tiền gửi</label>
+        <input type="range" name="money" min="100000" max="20000000" step="100000" id="money" value="100000">
+        <span class="show-range"></span>
+        <br>
+        <label for="takeout">Loại tiết kiệm: </label>
+        <select name="type">
+            <option value="0" selected>Không kỳ hạn</option>
+            <option value="1">3 tháng</option>
+            <option value="2">6 tháng</option>
+        </select>
+        <label for="">CMND</label>
+        <input type="text" name="identityNumber" required>
+        <label for="">Ngày mở sổ: </label>
+        <input type="date" name="dateOpened" required>
+        <button type="submit" class="btn btn-primary">Đăng kí</button>
+    </form>
+    <p class="mt-4 text-danger fw-bold d-inline-block">Xóa khách hàng có makh chỉ định: </p>
+    <label for="">Nhập makh: </label>
+    <input type="number" id="delete-makhInput" required min="1">
+    <button class="btn btn-danger" id="delete-makhBtn">Delete</button>
+    <hr><br>
+
+    <h1>Gửi tiền</h1>
+    <a href="http://localhost:8080/api/deposit" class="showLink btn bg-pink" target="_blank">
+        Xem danh sách gửi tiền</a>
+    <form action="http://localhost:8080/api/deposit" method="POST">
+        <legend>POST method</legend>
+        <label for="name">Khách hàng: </label>
+        <input type="text" name="customerName" required>
+        <label for="maso">Mã sổ:</label>
+        <input type="text" name="passbookCode" required>
+        <br>
+        <label for="takeout">Ngày gởi</label>
+        <input type="date" name="depositDate" required>
+        <label for="money">Số tiền gửi</label>
+        <input type="number" name="money" min="10000" max="20000000" value="50000">
+        <button type="submit" class="btn btn-success">Gởi tiền</button>
+    </form>
+    <br>
+    <hr>
+    <h1>Rút tiền</h1>
+    <a href="http://localhost:8080/api/withdraw" class="showLink btn bg-pink" target="_blank">
+        Xem danh sách rút tiền</a>
+    <form action="http://localhost:8080/api/withdraw" method="POST">
+        <legend>POST method</legend>
+        <label for="name">Khách hàng: </label>
+        <input type="text" id="name" name="customerName" required>
+        <label for="maso">Mã sổ:</label>
+        <input type="text" name="passbookCode" id="maso" required>
+        <br>
+        <label for="takeout">Ngày rút</label>
+        <input type="date" name="withdrawalDate" id="takeout" required>
+        <label for="">Số tiền rút</label>
+        <input type="number" name="money" min="10000" max="20000000" value="50000">
+        <button type="submit" class="btn btn-warning">Rút tiền</button>
+    </form>
+    <br>
+    <hr>
+    <h1>Danh sách sổ tiết kiệm</h1>
+    <a href="http://localhost:8080/api/passbook/tracuu" class="showLink btn bg-pink">Hiển thị</a>
+    <a href="http://localhost:8080/api/passbook/lookup?page=0&per_page=3" class="showLink btn bg-pink">
+        Hiển thị có phân trang</a>
+    <p>* page là trang hiện tại bắt đầu từ 0(mặc định là 0), per_page là số item trong mỗi page(mặc định là 2),
+        total_pages là số page</p>
+    <hr><br>
+    <h1>Danh số hoạt động ngày:</h1>
+    <form action="http://localhost:8080/api/passbook/daily-turnover" method="GET">
+        <legend>GET method</legend>
+        <label for="">Chọn ngày: </label>
+        <input type="date" name="date" required>
+        <button type="submit" class="btn btn-info">Tra cứu</button>
+    </form>
+    <hr><br>
+    <h1>Báo Cáo Mở/Đóng Sổ Tháng</h1>
+    <form action="http://localhost:8080/api/passbook/report" method="GET">
+        <legend>GET method</legend>
+        <label for="name">Loại tiết kiệm: </label>
+        <select name="type" id="" required>
+            <option value="0">Không kỳ hạn</option>
+            <option value="1">3 tháng</option>
+            <option value="2">6 tháng</option>
+        </select>
+        <label for="takeout">Ngày rút</label>
+        <input type="month" name="monthYear" required>
+        <button class="btn btn-secondary" type="submit">Báo cáo</button>
+    </form>
+    <hr><br>
+    <h1>Change regulations</h1>
+    <a href="http://localhost:8080/api/term" class="btn showLink bg-pink m-2">Danh sách kỳ hạn</a>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Thêm kỳ hạn
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Thêm mới kỳ hạn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:8080/api/term" method="POST">
+                        <legend>POST Method</legend>
+                        <label for="">Chọn loại kỳ hạn:</label>
+                        <input type="number" name="monthsOfTerm" min="0" value="1" width="5%"> Tháng
+                        <br>
+                        <label for="">Lãi suất: </label>
+                        <input type="number" min="0.0001" step="0.0001" value="0.005" name="interestRate">
+                        <br>
+                        <label for="">Số tiền gửi tối thiểu: </label>
+                        <input type="number" name="minDeposit" step="10000" min="10000" value="100000">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <p class="mt-4 text-danger fw-bold d-inline-block">Xóa kỳ hạn </p>
+    <label for="">(DELETE Method using AJAX) Nhập type : </label>
+    <input type="number" id="delete-termInput" required min="0" value="1">
+    <button class="btn btn-danger" id="delete-termBtn">Delete</button>
+    <hr><br>
+    <h1>Cập nhật kỳ hạn: </h1>
+    <form action="http://localhost:8080/api/term" method="" id="update-term">
+        <legend>PUT method using AJAX</legend>
+        <label for="">Chọn loại kỳ hạn type = </label>
+        <input type="number" name="type" value="3" min="0">
+        <label for="">Số tiền gửi tối thiểu: </label>
+        <input type="number" name="minDeposit" step="10000" min="10000" value="100000">
+        <br>
+        <label for="">Thời gian gởi tối thiểu(đơn vị: ngày) :</label>
+        <input type="number" name="minDepositTime" min="1" value="15">
+        <br>
+        <label for="">Lãi suất: </label>
+        <input type="number" min="0.0001" step="0.0001" value="0.0055" name="interestRate">
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    <hr><br>
+    <div style="height: 70vh;"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(() => {
+        const $range = $("input#money");
+        const $showRange = $("span.show-range");
+        $showRange.text($range.val())
+        $range.on("input change", function (e) {
+            $showRange.text(e.target.value);
+        })
+        function deleteAjaxRequest(url, id) {
+            const isConfirmed = confirm(`Are you sure you want to delete id: ${id}`);
+            if (isConfirmed && id != -1) {
+                $.ajax({
+                    type: "DELETE",
+                    url: `${url}/${id}`,
+                    success: function (data) {
+                        alert("Kiểm tra IDE nếu không báo lỗi thì thành công ");
+                    },
+                    error: function (e) {
+                        alert("Error deleting object has id " + id + " lets check list object to see")
+                    }
+                });
+            } else if (isConfirm && id == -1) {
+                alert("Field must not be empty");
+            }
+        }
+        // DELETE Customer by makh
+        $("#delete-makhBtn").click(function () {
+            const makh = $("#delete-makhInput").val() != "" ? parseInt($("#delete-makhInput").val()) : -1;
+            const url = "http://localhost:8080/api/customer-passbook";
+            deleteAjaxRequest(url, makh);
+        });
+        // DELETE term by type
+        $("#delete-termBtn").click(function () {
+            const id = $("#delete-termInput").val() != "" ? parseInt($("#delete-termInput").val()) : -1;
+            const url = "http://localhost:8080/api/term";
+            deleteAjaxRequest(url, id);
+        });
+        // Update term by type
+        $("#update-term").submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            $.ajax({
+                type: "PUT",
+                url: actionUrl,
+                data: form.serialize(), // serializes the form's elements.
+                success: function (data) {
+                    alert("Kiểm tra nếu IDE không ném lỗi thì thành công");
+                }
+            });
+
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
