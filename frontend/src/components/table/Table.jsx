@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import { listPassbook, paginatePassbook } from "../../services/userService";
 import "./table.css";
 import ReactPaginate from "react-paginate";
+
 const List = () => {
   const [data, setData] = useState([]);
   const [totalPage, setTotalPage] = useState([]);

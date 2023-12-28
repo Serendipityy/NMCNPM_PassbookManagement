@@ -12,6 +12,8 @@ import { Button } from "reactstrap";
 import "./table.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./RegulationTable.css";
+import DeleteConfirmationModal from "../../pages/DeleteConfirmationModal";
+
 const RegulationTable = () => {
   const [data, setData] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -43,18 +45,46 @@ const RegulationTable = () => {
     setIsOpenModal(true);
     setDataModal({ data: item, state: 1 });
   };
-  const handleDelete = async (item) => {
-    try {
-      await deleteType(item.type);
-      await fetchData();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+
+  // const handleDelete = async (item) => {
+  //   try {
+  //     await deleteType(item.type);
+  //     await fetchData();
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   const handleCreate = async () => {
     setIsOpenModal(true);
     setDataModal({ state: 0 });
   };
+
+  // add confirmation delete modal
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  
+  const handleDelete = (item) => {
+    setItemToDelete(item);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteType(itemToDelete.type);
+      await fetchData();
+      setIsDeleteModalOpen(false);
+      setItemToDelete(null);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteModalOpen(false);
+    setItemToDelete(null);
+  };
+
   return (
     <>
       <TableContainer component={Paper} className="table">
@@ -108,6 +138,12 @@ const RegulationTable = () => {
           fetchData={fetchData}
         />
       )}
+
+      <DeleteConfirmationModal
+        show={isDeleteModalOpen}
+        handleClose={handleCancelDelete}
+        handleConfirm={handleConfirmDelete}
+      />
     </>
   );
 };

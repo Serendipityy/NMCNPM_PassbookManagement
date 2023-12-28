@@ -1,8 +1,10 @@
 .change {
   cursor: pointer;
   margin-right: 10px;
+  color: #9f46ff;
 }
 
 .delete {
   cursor: pointer;
+  color: #9f46ff;
 }

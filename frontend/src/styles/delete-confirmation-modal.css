@@ -1,0 +1,9 @@
+.delete__confirmation .modal-content {
+    width: 600px !important;
+    height: 250px;
+    padding: 2rem;
+}
+
+.delete__cancel{
+    color: #6E23BD !important;
+}
