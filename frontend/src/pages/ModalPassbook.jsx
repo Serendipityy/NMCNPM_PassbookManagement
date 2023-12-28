@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import { toast } from "react-toastify";
 import { addNewType, changeType } from "../services/userService";
+import '../styles/modal-passbook.css'
+
 const ModalPassbook = (props) => {
   const [data, setData] = useState({
     type: "",
@@ -78,64 +80,71 @@ const ModalPassbook = (props) => {
         </ModalHeader>
         <ModalBody>
           <Form>
-            <FormGroup>
-              <Label>Type(Months)</Label>
-              <Input
-                type="text"
-                id="typeName"
-                value={data.typeName}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Minimum deposit amount</Label>
-              <Input
-                type="number"
-                id="minDepo"
-                value={data.minDepo}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Minimum sending time:</Label>
-              <Input
-                type="number"
-                id="minTime"
-                value={data.minTime}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Interest rate:</Label>
-              <Input
-                type="number"
-                id="interestRate"
-                value={data.interestRate}
-                onChange={handleChange}
-                step="0.0001"
-              />
-            </FormGroup>
-            {/* Thêm các trường khác cần thiết cho form */}
-            <ModalFooter>
-              <Button type="submit" color="primary" onClick={handleSubmit}>
-                {props.dataModal && props.dataModal.state === 0
-                  ? "Create"
-                  : "Update"}
-              </Button>{" "}
-              <Button color="secondary" onClick={props.handleCloseModal}>
-                Cancel
-              </Button>
-            </ModalFooter>
+            <div className="input d-flex gap-5">
+              <div className="w-50">
+                <FormGroup className="change__content">
+                  <Label>Type(Months)</Label>
+                  <Input
+                    type="text"
+                    id="typeName"
+                    value={data.typeName}
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+              </div>
+
+              <div className="w-50">
+                <FormGroup className="change__content">
+                  <Label>Minimum deposit amount</Label>
+                  <Input
+                    type="number"
+                    id="minDepo"
+                    value={data.minDepo}
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+              </div>
+            </div>
+
+            <div className="input d-flex gap-5">
+              <div className="w-50">
+                <FormGroup className="change__content">
+                  <Label>Minimum sending time:</Label>
+                  <Input
+                    type="number"
+                    id="minTime"
+                    value={data.minTime}
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+              </div>
+
+              <div className="w-50">
+                <FormGroup className="change__content">
+                  <Label>Interest rate:</Label>
+                  <Input
+                    type="number"
+                    id="interestRate"
+                    value={data.interestRate}
+                    onChange={handleChange}
+                    step="0.0001"
+                  />
+                </FormGroup>
+              </div>
+            </div>
           </Form>
         </ModalBody>
-        {/* <ModalFooter>
-          <Button color="primary" onClick={props.handleCloseModal}>
-            Do Something
+        {/* Thêm các trường khác cần thiết cho form */}
+        <ModalFooter>
+          <Button className='btn primary__btn change__create' type="submit" color="primary" onClick={handleSubmit}>
+            {props.dataModal && props.dataModal.state === 0
+              ? "Create"
+              : "Update"}
           </Button>{" "}
-          <Button color="secondary" onClick={props.handleCloseModal}>
+          <Button className='btn secondary__btn change__cancel' onClick={props.handleCloseModal}>
             Cancel
           </Button>
-        </ModalFooter> */}
+        </ModalFooter>
       </Modal>
     </div>
   );
