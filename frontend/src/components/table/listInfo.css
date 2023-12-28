@@ -1,15 +1,6 @@
-/* .MuiTableHead-root tr {
-    background-color: var(--primary-color) !important;
-} */
-.css-15wwp11-MuiTableHead-root tr {
-    /* background-color: var(--primary-color) !important; */
+thead tr {
     background-color: #914dda !important;
 }
-
-.css-quj9j6-MuiTable-root {
-    /* border: 1px solid var(--primary-color) !important; */
-}
-
 
 
 .css-1ygcj2i-MuiTableCell-root {
@@ -24,7 +15,7 @@
     border-radius: .25rem;
 }
 
-.table .type._DDA {
+.table .type._Non-term {
     background: #C1E0FD;
 }
 
@@ -38,6 +29,6 @@
 }
 
 /* Thêm border cho tất cả các ô trong bảng */
-.tableCell {
+/* .tableCell {
     border: 1px solid #914dda !important;
-}
+} */

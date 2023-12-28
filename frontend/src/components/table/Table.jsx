@@ -65,14 +65,14 @@ const List = () => {
                     <span
                       className={`type _${
                         item.type === 0
-                          ? "DDA"
+                          ? "Non-term"
                           : item.type === 1
                           ? "3 months"
                           : "6 months"
                       }`}
                     >
                       {item.type === 0
-                        ? "DDA"
+                        ? "Non-term"
                         : item.type === 1
                         ? "3 months"
                         : "6 months"}

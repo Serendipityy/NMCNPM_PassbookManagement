@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import "./listInfo.css";
+import "./table.css";
 
 // const ListDailyInfo = ({ date }) => {
 const ListDailyInfo = ({ data }) => {
@@ -59,14 +59,14 @@ const ListDailyInfo = ({ data }) => {
                   <span
                     className={`type _${
                       item.type === 0
-                        ? "DDA"
+                        ? "Non-term"
                         : item.type === 1
                         ? "3 months"
                         : "6 months"
                     }`}
                   >
                     {item.type === 0
-                      ? "DDA"
+                      ? "Non-term"
                       : item.type === 1
                       ? "3 months"
                       : "6 months"}
