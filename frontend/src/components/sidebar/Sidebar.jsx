@@ -101,14 +101,17 @@ const Sidebar = () => {
                     {NAV__LINKS.map((item, index) => (
                         <React.Fragment key={index}>
                             <li className='nav__item' onClick={() => toggleSubMenu(index)}>
-                                <NavLink
-                                    to={item.url}
-                                    // className={(navClass) => (navClass.isActive ? 'active' : '')}
-                                    className={(navClass) => (navClass.isActive && (!item.submenus || activeMenu === null) ? 'active' : '')}
-                                >
-                                    <span className='icon'>{item.icon}</span>
-                                    <span className='text'>{item.display}</span>
-                                </NavLink>
+                                {item.submenus ? (
+                                    <Link to="#" onClick={(e) => e.preventDefault()} className={(navClass) => (navClass.isActive && activeMenu === null ? 'active' : '')}>
+                                        <span className='icon'>{item.icon}</span>
+                                        <span className='text'>{item.display}</span>
+                                    </Link>
+                                ) : (
+                                    <NavLink to={item.url} className={(navClass) => (navClass.isActive && (!item.submenus || activeMenu === null) ? 'active' : '')}>
+                                        <span className='icon'>{item.icon}</span>
+                                        <span className='text'>{item.display}</span>
+                                    </NavLink>
+                                )}
                             </li>
                             {activeMenu === index && item.submenus && (
                                 <ul className='submenu'>
