@@ -56,7 +56,10 @@ function MonthlyReport() {
   };
   return (
     <div className="monthly__container">
-      <Common title={"Monthly Open/Close Report"} />
+      <Common 
+        title={"Monthly Open/Close Report"} 
+        desc={"Explore Monthly Close/Open Reports for a concise overview of key financial data"}
+      />
       <div className="monthly__section">
         <Form className="monthly__form" onSubmit={handleSubmit}>
           <div className="input__container monthly">

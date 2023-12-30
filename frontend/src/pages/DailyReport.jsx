@@ -36,7 +36,10 @@ function DailyReport() {
   return (
     <>
       <div className="daily__container">
-        <Common title={"Daily Turnover Reports"} />
+        <Common 
+          title={"Daily Turnover Reports"} 
+          desc={"View the Daily Turnover Reports for a concise summary of financial activities"}  
+        />
         <div className="daily__section">
           <Form className="daily__form" onSubmit={handleSubmit}>
             <div className="input__container daily">

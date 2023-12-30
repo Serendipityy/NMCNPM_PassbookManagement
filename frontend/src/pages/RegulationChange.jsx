@@ -37,7 +37,10 @@ function RegulationChange() {
   return (
     <>
       <div className="daily__container">
-        <Common title={"Regulation Change"} />
+        <Common 
+          title={"Regulation Change"} 
+          desc={"You can change some regulations here"}
+        />
         <div className="daily__section">
           <RegulationTable />
           <div className="daily__info"></div>
