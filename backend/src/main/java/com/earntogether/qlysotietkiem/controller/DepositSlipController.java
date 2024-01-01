@@ -18,6 +18,7 @@ import java.util.List;
 public class DepositSlipController {
     private final DepositSlipService depositService;
 
+    // Will be considered to delete
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<DepositSlipModel> getAllDepositSlip(){
@@ -26,11 +27,12 @@ public class DepositSlipController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public AppResponse insertDepositSlip(@Valid DepositSlipDTO depositSlipDto){
+    public AppResponse insertDepositSlip(@Valid DepositSlipDTO depositSlipDto) {
         depositService.insertDepositSlip(depositSlipDto);
-        return new AppResponse(HttpStatus.OK.value(),"Deposit Successful!");
+        return new AppResponse(HttpStatus.OK.value(), "Deposit Successful!");
     }
 
+    // Will be considered to delete
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllDepositSlip(){

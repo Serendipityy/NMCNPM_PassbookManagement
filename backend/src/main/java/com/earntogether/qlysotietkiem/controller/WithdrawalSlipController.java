@@ -18,6 +18,7 @@ import java.util.List;
 public class WithdrawalSlipController {
     private final WithdrawalSlipService withdrawalService;
 
+    // Will be considered to delete
     @GetMapping
     public ResponseEntity<List<WithdrawalSlipModel>> getAllWithdrawalSlip(){
         return ResponseEntity.ok(withdrawalService.getAllWithdrawalSlip());
@@ -25,11 +26,12 @@ public class WithdrawalSlipController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public AppResponse insertWithdrawalSlip(@Valid WithdrawalSlipDTO withdrawalSlipDto){
+    public AppResponse insertWithdrawalSlip(@Valid WithdrawalSlipDTO withdrawalSlipDto) {
         String message = withdrawalService.insertWithdrawalSlip(withdrawalSlipDto);
         return new AppResponse(HttpStatus.OK.value(), message);
     }
 
+    // Will be considered to delete
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteAll(){

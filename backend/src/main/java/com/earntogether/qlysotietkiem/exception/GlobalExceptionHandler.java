@@ -1,7 +1,6 @@
 package com.earntogether.qlysotietkiem.exception;
 
-import com.earntogether.qlysotietkiem.model.AppResponse;
-import jakarta.validation.ConstraintViolationException;
+import com.earntogether.qlysotietkiem.model.AppResponse; 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -10,11 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+ 
+import java.util.List; 
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,7 +18,7 @@ public class GlobalExceptionHandler {
             DataNotValidException.class })
     public ResponseEntity<AppResponse> handleCommonException(CommonException ex,
                                                              WebRequest request){
-        System.out.println("Caught an exception! Bug ne ban oi hahaha");
+        System.out.println("Caught an exception! You has got bug!");
         return ResponseEntity.status(ex.getCode()).body(
                 new AppResponse(ex.getCode(), ex.getMessage()));
     }

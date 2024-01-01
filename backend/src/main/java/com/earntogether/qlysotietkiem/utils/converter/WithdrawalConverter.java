@@ -1,10 +1,8 @@
 package com.earntogether.qlysotietkiem.utils.converter;
 
-import com.earntogether.qlysotietkiem.dto.WithdrawalSlipDTO;
-import com.earntogether.qlysotietkiem.entity.Customer;
+import com.earntogether.qlysotietkiem.dto.WithdrawalSlipDTO; 
 import com.earntogether.qlysotietkiem.entity.Passbook;
-import com.earntogether.qlysotietkiem.entity.WithdrawalSlip;
-import com.earntogether.qlysotietkiem.model.DepositSlipModel;
+import com.earntogether.qlysotietkiem.entity.WithdrawalSlip; 
 import com.earntogether.qlysotietkiem.model.WithdrawalSlipModel;
 
 public class WithdrawalConverter {

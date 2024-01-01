@@ -25,10 +25,11 @@ public class PassbookController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Passbook> getAllFullPassbookDetails(){
+    public List<Passbook> getAllFullPassbookDetails() {
         return passbookService.getAllPassbook();
     }
 
+    // Will be considered to delete
     @GetMapping("/tracuu")
     @ResponseStatus(HttpStatus.OK)
     public List<PassbookModel> lookupPassbooks(){
@@ -58,6 +59,7 @@ public class PassbookController {
         return passbookService.getDailyTurnover(date);
     }
 
+    // Will be considered to delete
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteAll(){

@@ -60,9 +60,9 @@ public class TermService {
         var term = termRepository.findByType(type).orElseThrow(
                 () -> new ResourceNotFoundException("Not found " +
                         "term with type = " + type));
-        // Cập nhật số tiền gửi tối thiều cho kỳ hạn
+        // Update minimum deposit for term
         term.setMinDeposit(termUpdateDto.minDeposit());
-        // Cập nhật thời gian gởi tối thiểu để rút
+        // Update minimum deposit time for term to take out
         term.setDaysWithdrawn(termUpdateDto.minDepositTime());
         term.setInterestRate(termUpdateDto.interestRate());
         termRepository.save(term);

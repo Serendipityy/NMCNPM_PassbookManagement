@@ -1,6 +1,5 @@
 package com.earntogether.qlysotietkiem.service;
-import com.earntogether.qlysotietkiem.dto.ReportDTO;
-import com.earntogether.qlysotietkiem.entity.Customer;
+import com.earntogether.qlysotietkiem.dto.ReportDTO; 
 import com.earntogether.qlysotietkiem.entity.Passbook;
 import com.earntogether.qlysotietkiem.exception.DataNotValidException;
 import com.earntogether.qlysotietkiem.exception.ResourceNotFoundException;
@@ -25,9 +24,10 @@ import java.util.*;
 @AllArgsConstructor
 public class PassbookService {
     private PassbookRepository passbookRepository;
-    private TermRepository kyhanRepository;
+    private TermRepository termRepository;
     private CommonCustomerPassbookService commonCustomerPassbookService;
 
+    // Will be considered to delete
     public List<Passbook> getAllPassbook(){
         return passbookRepository.findAll();
     }
@@ -53,13 +53,13 @@ public class PassbookService {
     }
 
     public List<ReportModel> getOpenClosePassbookMonthlyReport(ReportDTO reportDto) {
-        // Lấy số ngày trong tháng năm chỉ định
+        // Get number of days in month
         int totalDays = reportDto.monthYear().lengthOfMonth();
         int type = reportDto.type();
         List<ReportModel> monthlyReports = new LinkedList<>();
         for(int day = 1 ; day <= totalDays; day++){
             LocalDate date =  reportDto.monthYear().atDay(day);
-            // Query database lấy số mở và đóng
+            // Query database to get number of opened and closed passbooks
             var numOpenClosePassbookList = countOpenClosePassbook(type, date);
             int numOfOpened = numOpenClosePassbookList.get(0);
             int numOfClosed = numOpenClosePassbookList.get(1);
@@ -77,14 +77,14 @@ public class PassbookService {
                     "exceed current date");
         }
         List<AccountingModel> revenueList = new LinkedList<>();
-        var listKyHan = kyhanRepository.findAll();
-        listKyHan.forEach(kyhan -> {
-            int type = kyhan.getType();
+        var termList = termRepository.findAll();
+        termList.forEach(term -> {
+            int type = term.getType();
             var sumOfMoneyDeposit =
                     commonCustomerPassbookService.getSumDepositMoney(type, date);
             var sumOfWithdrawalMoney = commonCustomerPassbookService
                                         .getSumWithdrawalMoney(type, date);
-            revenueList.add(new AccountingModel(kyhan.getName(), type,
+            revenueList.add(new AccountingModel(term.getName(), type,
                     sumOfMoneyDeposit, sumOfWithdrawalMoney));
         });
         return revenueList;
@@ -135,6 +135,7 @@ public class PassbookService {
         return passbookRepository.findAll(pageable);
     }
 
+    // Will be considered to delete
     public void deleteAllPassbook() {
         passbookRepository.deleteAll();
     }

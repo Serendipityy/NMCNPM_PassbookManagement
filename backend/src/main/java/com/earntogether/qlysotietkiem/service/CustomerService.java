@@ -4,17 +4,11 @@ import com.earntogether.qlysotietkiem.dto.CustomerPassbookDTO;
 import com.earntogether.qlysotietkiem.entity.Customer;
 import com.earntogether.qlysotietkiem.entity.Passbook;
 import com.earntogether.qlysotietkiem.exception.DataNotValidException;
-import com.earntogether.qlysotietkiem.exception.ResourceNotFoundException;
-import com.earntogether.qlysotietkiem.model.PassbookModel;
+import com.earntogether.qlysotietkiem.exception.ResourceNotFoundException; 
 import com.earntogether.qlysotietkiem.repository.CustomerRepository;
 import com.earntogether.qlysotietkiem.repository.TermRepository;
-import com.earntogether.qlysotietkiem.utils.converter.CustomerConverter;
-import com.earntogether.qlysotietkiem.utils.converter.PassBookConverter;
-import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import com.earntogether.qlysotietkiem.utils.converter.CustomerConverter; 
+import lombok.AllArgsConstructor; 
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,6 +21,7 @@ public class CustomerService {
     private PassbookService passbookService;
     private TermRepository termRepository;
 
+    // Will be considered to delete 
     public List<Customer> getAllCustomer(){
         return customerRepository.findAll();
     }
@@ -53,22 +48,22 @@ public class CustomerService {
             throw new DataNotValidException("Customer with ID number: " 
 		+ cusPassbookDto.identityNumber() + " already exists.");
         }
-        // Check if the opened date's passbook is over than present
-        if(cusPassbookDto.dateOpened().isAfter(LocalDate.now())){
-            throw new DataNotValidException("Passbook opening date cannot" +
-                    " exceed current date") ;
-        }
+        // Check if the opened date's passbook is over than present - Will be considered to delete
+        // if(cusPassbookDto.dateOpened().isAfter(LocalDate.now())){
+        //     throw new DataNotValidException("Passbook opening date cannot" +
+        //             " exceed current date") ;
+        // }
 
         Customer customer = CustomerConverter.covertDTOtoEntity(cusPassbookDto);
-        // Tạo mã khách hàng cho Customer đăng kí mới
-        customer.setCustomerCode(getNewCustomerCode());
-        // Kiểm tra mã sổ tồn tại chưa
+        // Generate customer code for new customer
+        customer.setCustomerCode(generateCustomerCode());
+        // Check whether the indicated passbook is already exist
         int passbookCode = customer.getPassbookCode();
         passbookService.getPassbookByCode(passbookCode).ifPresent(
                 passbook -> {throw new DataNotValidException("Already existed " +
                         "passbook with code: "+ passbook.getPassbookCode());}
         );
-        // Tạo sổ tiết kiệm
+        // Create passbook instance
         var passbook = new Passbook(null, passbookCode,
                 customer.getCustomerCode(), 1, term,
                 cusPassbookDto.dateOpened(), cusPassbookDto.money());
@@ -77,7 +72,7 @@ public class CustomerService {
         System.out.println("-> Inserted " + customer);
     }
 
-    private int getNewCustomerCode() {
+    private int generateCustomerCode() {
         int newCode = 1;
         while(customerRepository.findByCustomerCode(newCode).isPresent()){
             newCode++;
