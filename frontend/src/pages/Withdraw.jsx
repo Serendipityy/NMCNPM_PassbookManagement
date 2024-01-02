@@ -39,8 +39,8 @@ const Withdraw = () => {
 
         <Form className="withdraw__form" onSubmit={handleClick}>
           <div className="input__container">
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input__withdraw d-flex">
+              <div className="input__child">
                 <label htmlFor="withdraw-code">Code</label>
                 <FormGroup className="withdraw__content">
                   <input
@@ -53,7 +53,7 @@ const Withdraw = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="withdraw-username">Username</label>
                 <FormGroup className="withdraw__content">
                   <input
@@ -67,8 +67,8 @@ const Withdraw = () => {
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input__withdraw d-flex">
+              <div className="input__child">
                 <label htmlFor="withdraw-date">Date of withdraw</label>
                 <FormGroup className="withdraw__content">
                   <input
@@ -81,7 +81,7 @@ const Withdraw = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="withdraw">Withdraw</label>
                 <FormGroup className="withdraw__content">
                   <input

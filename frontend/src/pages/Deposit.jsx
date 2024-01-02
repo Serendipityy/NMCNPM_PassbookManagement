@@ -36,8 +36,8 @@ const Deposit = () => {
 
         <Form className="deposit__form" onSubmit={handleClick}>
           <div className="input__container">
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input__deposit d-flex">
+              <div className="input__child">
                 <label htmlFor="deposit-code">Code</label>
                 <FormGroup className="deposit__content">
                   <input
@@ -50,7 +50,7 @@ const Deposit = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="deposit-username">Username</label>
                 <FormGroup className="deposit__content">
                   <input
@@ -64,8 +64,8 @@ const Deposit = () => {
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input__deposit d-flex">
+              <div className="input__child">
                 <label htmlFor="deposit-date">Date of deposit</label>
                 <FormGroup className="deposit__content">
                   <input
@@ -78,7 +78,7 @@ const Deposit = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="deposit">Deposit</label>
                 <FormGroup className="deposit__content">
                   <input
