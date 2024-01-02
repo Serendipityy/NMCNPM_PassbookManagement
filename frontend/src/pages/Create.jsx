@@ -81,13 +81,6 @@ const Create = () => {
               <div className="w-50">
                 <label htmlFor="type">Type</label>
                 <FormGroup className="content">
-                  {/* <input
-                    type="text"
-                    placeholder="Enter type of passbook"
-                    required
-                    id="type"
-                    onChange={handleChange}
-                  /> */}
                   <select
                     type="select"
                     placeholder="Choose type of passbook"

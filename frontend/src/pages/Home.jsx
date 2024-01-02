@@ -7,12 +7,10 @@ const Home = () => {
     <div className="home__container">
       <div className='home__wallpaper'>
         <h3>A faster way to <br />
-        <span>Manage Passbook</span>
+          <span>Manage Passbook</span>
         </h3>
 
         <img src={homeWallpaper} alt=''/>
-
-
       </div>
 
 
