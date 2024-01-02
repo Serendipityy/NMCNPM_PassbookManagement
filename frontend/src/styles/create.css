@@ -95,7 +95,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media screen and (max-width: 820px) {
     .common {
-        padding: .45rem;
+        padding: .35rem;
     }
     .form {
         width: 90%;
