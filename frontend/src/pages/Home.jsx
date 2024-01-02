@@ -1,7 +1,6 @@
 import React from 'react'
 import '../styles/home.css'
 import homeWallpaper from '../assets/images/19197179.png'
-import homeIntroBG from '../assets/images/homeIntroBG.jpg'
 
 const Home = () => {
   return (
