@@ -66,3 +66,10 @@
 .home__description li {
     margin-bottom: 1rem;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .home__container {
+        min-height: 100vh;
+    }
+}
