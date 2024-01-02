@@ -92,7 +92,7 @@ const List = () => {
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={4}
+        pageRangeDisplayed={5}
         pageCount={totalPage}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
