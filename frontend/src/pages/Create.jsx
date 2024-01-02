@@ -64,8 +64,8 @@ const Create = () => {
 
         <Form className="form" onSubmit={handleClick}>
           <div className="input__container">
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input d-flex">
+              <div className="input__child">
                 <label htmlFor="code">Code</label>
                 <FormGroup className="content">
                   <input
@@ -78,7 +78,7 @@ const Create = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="type">Type</label>
                 <FormGroup className="content">
                   <select
@@ -102,8 +102,8 @@ const Create = () => {
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input d-flex">
+              <div className="input__child">
                 <label htmlFor="username">Full name</label>
                 <FormGroup className="content">
                   <input
@@ -116,7 +116,7 @@ const Create = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="identity">Identity card</label>
                 <FormGroup className="content">
                   <input
@@ -130,8 +130,8 @@ const Create = () => {
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input d-flex">
+              <div className="input__child">
                 <label htmlFor="address">Address</label>
                 <FormGroup className="content">
                   <input
@@ -144,7 +144,7 @@ const Create = () => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="date">Date of creation</label>
                 <FormGroup className="content">
                   <input

@@ -28,6 +28,11 @@
 .input {
     padding: .5rem 0;
     margin-bottom: 1.25rem;
+    gap: 3.5rem;
+}
+
+.input__child {
+    width: 50%;
 }
 
 .last {
@@ -87,3 +92,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
+@media screen and (max-width: 820px) {
+    .common {
+        padding: .3rem;
+    }
+    .form {
+        width: 90%;
+        gap: .25rem;
+    }
+    .input__container {
+        padding: .5rem;
+    }
+
+    .input {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    .input__child {
+        width: 100%;
+    }
+    .last {
+        width: 100% !important;
+    }
+}
