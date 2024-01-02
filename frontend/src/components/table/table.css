@@ -43,3 +43,11 @@ tbody tr:nth-child(2n) {
 }
 
 
+@media screen and (max-width: 820px) {
+    .css-quj9j6-MuiTable-root {
+        min-width: unset !important;
+    }
+    .change__btn {
+        width: 25%;
+    }
+}

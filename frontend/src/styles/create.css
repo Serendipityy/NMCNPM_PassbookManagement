@@ -95,11 +95,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media screen and (max-width: 820px) {
     .common {
-        padding: .3rem;
+        padding: .45rem;
     }
     .form {
         width: 90%;
         gap: .25rem;
+        margin-top: 0;
     }
     .input__container {
         padding: .5rem;
@@ -107,7 +108,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .input {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
     }
     .input__child {
         width: 100%;

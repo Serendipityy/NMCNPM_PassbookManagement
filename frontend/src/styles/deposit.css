@@ -62,6 +62,7 @@
 @media screen and (max-width: 820px) {
     .deposit__form {
         width: 90%;
+        padding: 2rem 3rem;
     }
     .input__deposit {
         flex-direction: column;
