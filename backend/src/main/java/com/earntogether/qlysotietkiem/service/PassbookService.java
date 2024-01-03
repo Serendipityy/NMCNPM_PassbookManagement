@@ -132,7 +132,7 @@ public class PassbookService {
     }
 
     public Page<Passbook> getAllWithPagination(Pageable pageable) {
-        return passbookRepository.findAll(pageable);
+        return passbookRepository.findAllByStatus(pageable, 1);
     }
 
     // Will be considered to delete

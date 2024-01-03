@@ -47,12 +47,7 @@ public class CustomerService {
         if(customerRepository.findByIdentityNumber(cusPassbookDto.identityNumber()).isPresent()){
             throw new DataNotValidException("Customer with ID number: " 
 		+ cusPassbookDto.identityNumber() + " already exists.");
-        }
-        // Check if the opened date's passbook is over than present - Will be considered to delete
-        // if(cusPassbookDto.dateOpened().isAfter(LocalDate.now())){
-        //     throw new DataNotValidException("Passbook opening date cannot" +
-        //             " exceed current date") ;
-        // }
+        } 
 
         Customer customer = CustomerConverter.covertDTOtoEntity(cusPassbookDto);
         // Generate customer code for new customer
