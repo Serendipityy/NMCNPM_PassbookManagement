@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import Common from "../shared/Common";
@@ -14,19 +14,39 @@ const Withdraw = () => {
     withdraw: "",
   });
 
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isFormSubmitted) {
+      setIsFormSubmitted(false);
+    }
+  }, [isFormSubmitted]);
+
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
+
+  const resetForm = () => {
+    setCredentials({
+      passbookCode: "",
+      withdrawalDate: "",
+      customerName: "",
+      withdraw: "",
+    });
+    setIsFormSubmitted(true);
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       let response = await withdrawMoney(credentials);
       console.log("check response: ", response);
 
-      toast.success("Withdrawal slip successfully");
+      toast.success("Withdrawal slip successfully", {autoClose: 1000});
+      resetForm();
     } catch (e) {
       console.log(e);
-      toast.error(e.response.data.message);
+      toast.error(e.response.data.message, {autoClose: 1000});
     }
   };
   return (
@@ -48,19 +68,21 @@ const Withdraw = () => {
                     placeholder="Enter code"
                     required
                     id="passbookCode"
+                    value={credentials.passbookCode}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </div>
 
               <div className="input__child">
-                <label htmlFor="withdraw-username">Username</label>
+                <label htmlFor="withdraw-username">Customer name</label>
                 <FormGroup className="withdraw__content">
                   <input
                     type="text"
-                    placeholder="Enter username"
+                    placeholder="Enter customer name"
                     required
                     id="customerName"
+                    value={credentials.customerName}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -76,6 +98,7 @@ const Withdraw = () => {
                     placeholder="Enter withdrawed date"
                     required
                     id="withdrawalDate"
+                    value={credentials.withdrawalDate}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -89,6 +112,7 @@ const Withdraw = () => {
                     placeholder="Enter withdraw"
                     required
                     id="withdraw"
+                    value={credentials.withdraw}
                     onChange={handleChange}
                   />
                 </FormGroup>
