@@ -12,7 +12,7 @@ const Create = () => {
   const [credentials, setCredentials] = useState({
     code: "",
     type: "",
-    customername: "",
+    username: "",
     identity: "",
     address: "",
     date: "",
@@ -54,7 +54,7 @@ const Create = () => {
     setCredentials({
       code: "",
       type: "",
-      customername: "",
+      username: "",
       identity: "",
       address: "",
       date: "",
@@ -133,14 +133,14 @@ const Create = () => {
 
             <div className="input d-flex">
               <div className="input__child">
-                <label htmlFor="customername">Customer name</label>
+                <label htmlFor="username">Customer name</label>
                 <FormGroup className="content">
                   <input
-                    type="text"
+                    type="text"c
                     placeholder="Enter customer name"
                     required
-                    id="customername"
-                    value={credentials.customername}
+                    id="username"
+                    value={credentials.username}
                     onChange={handleChange}
                   />
                 </FormGroup>
