@@ -10,11 +10,11 @@ const Layout = () => {
   return (
     <>
       <div className="layout__container d-flex">
-        <Col lg="3" className="sidebarCol">
+        <Col lg="3" md="2" className="sidebarCol">
           <Sidebar />
         </Col>
 
-        <Col lg="9">
+        <Col lg="9" md="10">
           <Routers />
         </Col>
       </div>

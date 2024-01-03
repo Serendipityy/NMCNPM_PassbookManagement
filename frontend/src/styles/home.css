@@ -50,9 +50,8 @@
     font-family: 'Kalam', cursive;
     color: #6E23BD;
     text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
-
-
 }
+
 .home__description {
     /* background-color: #6E23BD; */
     width: 70%;
@@ -65,4 +64,43 @@
 
 .home__description li {
     margin-bottom: 1rem;
+}
+
+
+@media screen and (max-width: 820px) {
+    .home__wallpaper {
+        width: 100%;
+        height: 300px;
+        gap: 3.5rem;
+        padding: 0 2rem;
+    }
+
+    .home__wallpaper h3 {
+        line-height: 3rem;
+        letter-spacing: .25rem;
+        font-size: 2rem;
+    }
+    
+    .home__wallpaper h3 span {
+        font-size: 3.5rem;
+        text-shadow: 3px 1px #fff, 1px 3px 5px rgb(255, 105, 227);
+    }
+
+    .home__wallpaper img {
+        width: 60%;
+        height: 90%;
+        object-fit: cover;
+    }
+    .home__intro h1 {
+        margin-bottom: 2rem;
+    }
+    
+    .home__description {
+        width: 80%;
+        padding: 2rem 2rem 0 2rem;
+    }
+    
+    .home__description li {
+        margin-bottom: 2rem;
+    }
 }

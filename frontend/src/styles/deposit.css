@@ -6,7 +6,7 @@
 }
 
 .deposit__form {
-    width: 70%;
+    width: 80%;
     padding: 4rem;
     background: url('../assets/images/bgNew.jpg') center top/cover no-repeat;
     border: 3px dashed #6E23BD;
@@ -26,9 +26,10 @@
     width: 100%;
 }
 
-.input {
+.input__deposit {
     padding: .5rem 0;
-    margin-bottom: .75rem;
+    margin-bottom: 2rem;
+    gap: 4rem;
 }
 
 .deposit__content {
@@ -57,3 +58,19 @@
     background: #6E23BD !important;
 }
 
+
+@media screen and (max-width: 820px) {
+    .deposit__form {
+        width: 90%;
+        padding: 2rem 3rem;
+    }
+    .input__deposit {
+        flex-direction: column;
+        gap: 1.25rem;
+        margin-bottom: 0;
+    }
+    .deposit {
+        padding: 1.25rem !important;
+        width: 50% !important; 
+    }
+}

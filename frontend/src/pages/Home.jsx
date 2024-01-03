@@ -1,19 +1,16 @@
 import React from 'react'
 import '../styles/home.css'
 import homeWallpaper from '../assets/images/19197179.png'
-import homeIntroBG from '../assets/images/homeIntroBG.jpg'
 
 const Home = () => {
   return (
     <div className="home__container">
       <div className='home__wallpaper'>
         <h3>A faster way to <br />
-        <span>Manage Passbook</span>
+          <span>Manage Passbook</span>
         </h3>
 
         <img src={homeWallpaper} alt=''/>
-
-
       </div>
 
 

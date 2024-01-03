@@ -7,6 +7,7 @@ import { FaCalendarWeek } from "react-icons/fa";
 import { createNewPassbook } from "../services/userService";
 import { toast } from "react-toastify";
 import { getListTerm } from "../services/userService";
+
 const Create = () => {
   const [credentials, setCredentials] = useState({
     code: "",
@@ -17,7 +18,9 @@ const Create = () => {
     date: "",
     deposit: "",
   });
+  
   const [listTerm, setListTerm] = useState();
+  
   const fetchData = async () => {
     try {
       const apiData = await getListTerm();
@@ -33,13 +36,39 @@ const Create = () => {
       console.log(error);
     }
   };
+  
   useEffect(() => {
     fetchData();
   }, []);
+  
   const handleChange = (e) => {
     // console.log(e.target.value);
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
+
+  // Follow state of form after successfully submit create 
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  // Reset state of form after successfully create
+  const resetForm = () => {
+    setCredentials({
+      code: "",
+      type: "",
+      username: "",
+      identity: "",
+      address: "",
+      date: "",
+      deposit: "",
+    });
+    setIsFormSubmitted(true);
+  };
+
+  // Use value of state to set default value of form input
+  useEffect(() => {
+    if (isFormSubmitted) {
+      setIsFormSubmitted(false);
+    }
+  }, [isFormSubmitted]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -47,10 +76,11 @@ const Create = () => {
     try {
       let response = await createNewPassbook(credentials);
       console.log("check response: ", response);
-      toast.success("Created successfully");
+      toast.success("Created successfully", {autoClose: 1000});
+      resetForm();
     } catch (e) {
       console.log(e);
-      toast.error(e.response.data.message);
+      toast.error(e.response.data.message, {autoClose: 1000});
     }
   };
 
@@ -64,8 +94,8 @@ const Create = () => {
 
         <Form className="form" onSubmit={handleClick}>
           <div className="input__container">
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input d-flex">
+              <div className="input__child">
                 <label htmlFor="code">Code</label>
                 <FormGroup className="content">
                   <input
@@ -73,26 +103,21 @@ const Create = () => {
                     placeholder="Enter code"
                     required
                     id="code"
+                    value={credentials.code}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="type">Type</label>
                 <FormGroup className="content">
-                  {/* <input
-                    type="text"
-                    placeholder="Enter type of passbook"
-                    required
-                    id="type"
-                    onChange={handleChange}
-                  /> */}
                   <select
                     type="select"
                     placeholder="Choose type of passbook"
                     required
                     id="type"
+                    value={credentials.type}
                     onChange={handleChange}
                   >
                     <option value="">Select type of passbook</option>
@@ -101,29 +126,27 @@ const Create = () => {
                       listTerm.map((item) => (
                         <option key={item.type} value={item.type}>{item.name}</option>
                       ))}
-                    {/* <option value="0">DDA</option>
-                      <option value="1">3 months</option>
-                      <option value="2">6 months</option> */}
                   </select>
                 </FormGroup>
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
-                <label htmlFor="username">Full name</label>
+            <div className="input d-flex">
+              <div className="input__child">
+                <label htmlFor="username">Customer name</label>
                 <FormGroup className="content">
                   <input
-                    type="text"
-                    placeholder="Enter username"
+                    type="text"c
+                    placeholder="Enter customer name"
                     required
                     id="username"
+                    value={credentials.username}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="identity">Identity card</label>
                 <FormGroup className="content">
                   <input
@@ -131,14 +154,15 @@ const Create = () => {
                     placeholder="Enter identity card"
                     required
                     id="identity"
+                    value={credentials.identity}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input d-flex">
+              <div className="input__child">
                 <label htmlFor="address">Address</label>
                 <FormGroup className="content">
                   <input
@@ -146,12 +170,13 @@ const Create = () => {
                     placeholder="Enter address"
                     required
                     id="address"
+                    value={credentials.address}
                     onChange={handleChange}
                   />
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <label htmlFor="date">Date of creation</label>
                 <FormGroup className="content">
                   <input
@@ -159,6 +184,7 @@ const Create = () => {
                     placeholder="Enter created date"
                     required
                     id="date"
+                    value={credentials.date}
                     onChange={handleChange}
                   />
                 </FormGroup>
@@ -173,6 +199,7 @@ const Create = () => {
                   placeholder="Enter deposit"
                   required
                   id="deposit"
+                  value={credentials.deposit}
                   onChange={handleChange}
                 />
               </FormGroup>
