@@ -101,14 +101,17 @@ public class CommonCustomerPassbookService {
     public BigInteger calculateInterestRate(Passbook passbook){
         // Tính số lần đáo hạn
         var term = passbook.getTerm();
-        int monthsFromPassbookOpened = Math.toIntExact(ChronoUnit.MONTHS
-                .between(passbook.getDateCreated(), LocalDate.now()));
-        // Dùng floorDiv để lấy phần nguyên cho an toàn
-        int timesMaturity = Math.floorDiv(monthsFromPassbookOpened,
-                                        term.getMonthsOfTerm());
-        double interestRate = (double)timesMaturity * term.getInterestRate()
-                            * (double)term.getMonthsOfTerm()
-                            * passbook.getMoney().doubleValue();
-        return BigDecimal.valueOf(interestRate).toBigInteger();
+        if (passbook.getDateCreated().isBefore(LocalDate.now())) {
+            int monthsFromPassbookOpened = Math.toIntExact(ChronoUnit.MONTHS
+                    .between(passbook.getDateCreated(), LocalDate.now()));
+            // Dùng floorDiv để lấy phần nguyên cho an toàn
+            int timesMaturity = Math.floorDiv(monthsFromPassbookOpened,
+                    term.getMonthsOfTerm());
+            double interestRate = (double) timesMaturity * term.getInterestRate()
+                    * (double) term.getMonthsOfTerm()
+                    * passbook.getMoney().doubleValue();
+            return BigDecimal.valueOf(interestRate).toBigInteger();
+        }
+        return BigInteger.valueOf(0);
     }
 }

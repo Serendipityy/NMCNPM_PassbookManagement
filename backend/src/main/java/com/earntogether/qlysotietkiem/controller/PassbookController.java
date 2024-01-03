@@ -28,20 +28,13 @@ public class PassbookController {
     public List<Passbook> getAllFullPassbookDetails() {
         return passbookService.getAllPassbook();
     }
-
-    // Will be considered to delete
-    @GetMapping("/tracuu")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PassbookModel> lookupPassbooks(){
-        return passbookService.lookupPassbooks();
-    }
-
+    
     @GetMapping("/lookup")
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> lookupPassbooks(
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "per_page", defaultValue = "2") int per_page,
-            @RequestParam(name = "sortBy", defaultValue = "makh") String sortBy
+            @RequestParam(name = "sortBy", defaultValue = "passbookCode") String sortBy
     ){
         return passbookService.lookupPassbooks(page, per_page, sortBy);
     }

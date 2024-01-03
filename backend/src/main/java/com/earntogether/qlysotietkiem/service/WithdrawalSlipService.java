@@ -35,14 +35,20 @@ public class WithdrawalSlipService {
                                 + " with passbook code: " + withdrawalSlipDto.passbookCode()));
         var passbook = passbookRepository.findByPassbookCode(customer.getPassbookCode())
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
-                        "passbook with code: " + customer.getPassbookCode()));
+                                        "passbook with code: " + customer.getPassbookCode()));
+        if (passbook.getStatus() == 0) {
+                throw new DataNotValidException("Can not withdraw with closed passbook. Please try another passbook");
+        }
+        if (passbook.getStatus() == 0) {
+                throw new DataNotValidException("Can not deposit with closed passbook");
+        }
         var term = passbook.getTerm();
         // Check whether the opened time is qualified to take out
         var currentDate = LocalDate.now();
-        if (withdrawalSlipDto.withdrawalDate().isAfter(currentDate)) {
-            throw new DataNotValidException("Withdraw date cannot " +
-                    "exceed current date.");
-        }
+        // if (withdrawalSlipDto.withdrawalDate().isAfter(currentDate)) {
+        //     throw new DataNotValidException("Withdraw date cannot " +
+        //             "exceed current date.");
+        // }
         var dateOpened = passbook.getDateCreated();
         boolean hasQualifiedToTakeOut = ChronoUnit.DAYS.between(dateOpened,
                 currentDate) >= term.getDaysWithdrawn();

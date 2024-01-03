@@ -36,8 +36,11 @@ public class DepositSlipService {
         // Check type of the indicated passbook
         var passbook = passbookRepository.findByPassbookCode(customer.getPassbookCode())
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
-                        "passbook with passbook code: " + customer.getPassbookCode()));
-        var term = passbook.getTerm();
+                                        "passbook with passbook code: " + customer.getPassbookCode()));
+        if (passbook.getStatus() == 0) {
+            throw new DataNotValidException("Can not deposit with closed passbook");
+        }
+                        var term = passbook.getTerm();
         if (term.getType() != 0) {
             throw new DataNotValidException("Only accept deposits " +
                     "for non-term passbook");
