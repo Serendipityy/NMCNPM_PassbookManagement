@@ -5,10 +5,15 @@ import { Button, Form, FormGroup, Input } from "reactstrap";
 import ListMonthlyInfo from "../components/table/ListMonthlyInfo";
 import { getMonthlyReport, getListTerm } from "../services/userService";
 import { Select } from "@mui/material";
+import { FaSpinner } from 'react-icons/fa';
+
 function MonthlyReport() {
   const [formData, setFormData] = useState({ type: "", month: "" });
   const [data, setData] = useState([]);
   const [listTerm, setListTerm] = useState();
+
+  const [confirmed, setConfirmed] = useState(false);
+
   const fetchData = async () => {
     try {
       const apiData = await getListTerm();
@@ -27,8 +32,14 @@ function MonthlyReport() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true); // Start loading
+
     // const tempMonth = e.target[1].value;
     // const tempType = e.target[0].value;
     // setFormData({ type: tempType, month: tempMonth });
@@ -46,7 +57,11 @@ function MonthlyReport() {
     } catch (error) {
       // Handle errors as needed
       console.log(error);
+    } finally {
+      setLoading(false); // Finish loading
     }
+
+    setConfirmed(true);
   };
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -54,6 +69,7 @@ function MonthlyReport() {
       [e.target.id]: e.target.value,
     }));
   };
+
   return (
     <div className="monthly__container">
       <Common 
@@ -89,7 +105,11 @@ function MonthlyReport() {
           </div>
         </Form>
         <div className="monthly__info">
-          <ListMonthlyInfo data={data} />
+          {loading ? (
+            <p><FaSpinner className="loading-icon" /> Loading...</p>
+          ) :  (
+            <ListMonthlyInfo data={data} confirmed={confirmed} />
+          )}
         </div>
       </div>
     </div>
