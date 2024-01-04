@@ -90,21 +90,6 @@ public class PassbookService {
         return revenueList;
     }
 
-    public List<PassbookModel> lookupPassbooks() {
-        return this.getAllPassbook().stream()
-                .filter(passbook -> passbook.getStatus() == 1)
-                .map(passbook -> {
-                    String cusName = commonCustomerPassbookService
-                            .getNameByCustomerCode(passbook.getCustomerCode());
-                    var interestRate = commonCustomerPassbookService
-                                    .calculateInterestRate(passbook);
-                    passbook.setMoney(passbook.getMoney().add(interestRate));
-                    return PassBookConverter.convertEntityToModel(passbook,
-                            cusName);
-                })
-                .toList();
-    }
-
     public Map<String, Object> lookupPassbooks(int page, int per_page,
                                                String sortBy) {
         Sort sort = Sort.by(sortBy);
@@ -117,7 +102,7 @@ public class PassbookService {
                     String cusName = commonCustomerPassbookService
                             .getNameByCustomerCode(passbook.getCustomerCode());
                     var interestRate = commonCustomerPassbookService
-                            .calculateInterestRate(passbook);
+                            .calculateInterestRate(passbook, LocalDate.now());
                     passbook.setMoney(passbook.getMoney().add(interestRate));
                     return PassBookConverter.convertEntityToModel(passbook,
                             cusName);

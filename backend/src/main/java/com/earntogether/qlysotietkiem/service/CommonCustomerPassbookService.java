@@ -55,6 +55,7 @@ public class CommonCustomerPassbookService {
         var passbook = passbookRepository.findByPassbookCodeAndStatus(code, 1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                         "passbook with passbook code: " + code));
+                        
         passbook.setMoney(money);
         passbook.setDateTransaction(date);
         System.out.println(passbook);
@@ -97,12 +98,12 @@ public class CommonCustomerPassbookService {
     }
 
     // Passbook Service
-    public BigDecimal calculateInterestRate(Passbook passbook){
+    public BigDecimal calculateInterestRate(Passbook passbook, LocalDate date){
         // Tính số lần đáo hạn
         var term = passbook.getTerm();
-        if (passbook.getDateTransaction().isBefore(LocalDate.now())) {
+        if (passbook.getDateTransaction().isBefore(date)) {
             int monthsFromPassbookOpened = Math.toIntExact(ChronoUnit.MONTHS
-                    .between(passbook.getDateTransaction(), LocalDate.now()));
+                    .between(passbook.getDateTransaction(), date));
             // Dùng floorDiv để lấy phần nguyên cho an toàn
             int timesMaturity = Math.floorDiv(monthsFromPassbookOpened,
                     term.getMonthsOfTerm());

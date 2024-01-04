@@ -50,7 +50,9 @@ public class DepositSlipService {
                     "less than minimum deposit amount of " + term.getMinDeposit());
         } 
 
-        var moneyAdded = passbook.getMoney().add(depositSlipDto.money()).add(commonCusPassbookService.calculateInterestRate(passbook));
+        var moneyAdded = passbook.getMoney().add(commonCusPassbookService.calculateInterestRate(passbook, depositSlipDto.depositDate()))
+                        .add(depositSlipDto.money());
+        System.out.println("Added : " + moneyAdded);
         commonCusPassbookService.updateMoneyByPassbookCode(
                 passbook.getPassbookCode(), moneyAdded, depositSlipDto.depositDate());
         var depositSlip = DepositConverter.convertDTOtoEntity(depositSlipDto,
