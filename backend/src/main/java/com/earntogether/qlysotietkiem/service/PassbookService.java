@@ -36,6 +36,10 @@ public class PassbookService {
         return passbookRepository.findByPassbookCode(code);
     }
 
+    public Optional<Passbook> getPassbookByCodeAndStatus(int code, int status) {
+        return passbookRepository.findByPassbookCodeAndStatus(code, status);
+    }
+
     public void insertPassbook(Passbook passbook) {
         passbookRepository.save(passbook);
     }

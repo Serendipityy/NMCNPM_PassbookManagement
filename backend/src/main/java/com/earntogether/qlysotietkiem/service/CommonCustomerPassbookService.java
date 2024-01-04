@@ -70,7 +70,7 @@ public class CommonCustomerPassbookService {
 
     // PassbookService
     public void updatePassbookStatus(int code, int status){
-        Passbook passbook = passbookRepository.findByPassbookCode(code)
+        Passbook passbook = passbookRepository.findByPassbookCodeAndStatus(code, 1)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Passbook with passbook code = " + code + " is not found"));
         passbook.setStatus(status);

@@ -16,6 +16,7 @@ public interface PassbookRepository extends MongoRepository<Passbook,
         String> {
 
     Optional<Passbook> findByPassbookCode(int passbookCode);
+    Optional<Passbook> findByPassbookCodeAndStatus(int passbookCode, int status);
 
     List<Passbook> findByTermTypeAndDateCreated(int type,
                                                 LocalDate dateCreated);

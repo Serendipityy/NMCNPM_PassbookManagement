@@ -33,15 +33,12 @@ public class WithdrawalSlipService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Does not exist customer: " + withdrawalSlipDto.customerName()
                                 + " with passbook code: " + withdrawalSlipDto.passbookCode()));
-        var passbook = passbookRepository.findByPassbookCode(customer.getPassbookCode())
+        var passbook = passbookRepository.findByPassbookCodeAndStatus(customer.getPassbookCode(), 1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                                         "passbook with code: " + customer.getPassbookCode()));
-        if (passbook.getStatus() == 0) {
-                throw new DataNotValidException("Can not withdraw with closed passbook. Please try another passbook");
-        }
-        if (passbook.getStatus() == 0) {
-                throw new DataNotValidException("Can not deposit with closed passbook");
-        }
+        // if (passbook.getStatus() == 0) {
+        //         throw new DataNotValidException("Can not withdraw with closed passbook. Please try another passbook");
+        // } 
         var term = passbook.getTerm();
         // Check whether the opened time is qualified to take out
         var currentDate = LocalDate.now();
