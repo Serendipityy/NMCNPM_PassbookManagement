@@ -28,6 +28,13 @@ thead tr {
     background: #ABFFC3;
 }
 
+.text-center{
+    text-align: center;
+}
+.margin-auto{
+    margin: 0 auto;
+}
+
 /* Thêm border cho tất cả các ô trong bảng */
 /* .tableCell {
     border: 1px solid #914dda !important;

@@ -43,7 +43,8 @@
 .nav__item {
     padding: 1rem 0 !important;
     display: flex;
-    align-items: center;
+    align-items: center;    
+    transition: all 1s linear;
 }
 
 .text {
@@ -65,15 +66,21 @@
     /* background-color: #ffffff; */
     width: 100%;
     font-size: 1.2rem;
+    transition: all 2s linear;
 }
 
 .nav__item a:hover {
     background: linear-gradient(180deg, #a15deb 35%, #e1a1ff 100%);
     border-radius: .5rem;
+    
+}
+.nav__item a:not(.active):hover{
+    transition: all 2s linear;
 }
 
-.nav__item a:hover .text,
-.nav__item a:hover .icon {
+.nav__item a:not(.active):hover .text,
+.nav__item a:not(.active):hover .icon {
+    transform: translateX(.5rem);
     color: #fff;
 }
 

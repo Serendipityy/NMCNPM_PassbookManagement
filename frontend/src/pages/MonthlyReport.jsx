@@ -106,7 +106,7 @@ function MonthlyReport() {
         </Form>
         <div className="monthly__info">
           {loading ? (
-            <p><FaSpinner className="loading-icon" /> Loading...</p>
+            <p><FaSpinner className="loading-icon margin-auto" /> Loading...</p>
           ) :  (
             <ListMonthlyInfo data={data} confirmed={confirmed} />
           )}

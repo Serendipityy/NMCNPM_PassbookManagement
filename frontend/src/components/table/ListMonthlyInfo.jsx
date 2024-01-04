@@ -69,7 +69,7 @@ const ListlyInfo = ({ data, confirmed }) => {
             ))
           ) : (
             <TableRow>
-                <TableCell colSpan={5} className="tableCell">
+                <TableCell colSpan={5} className="tableCell text-center">
                   There are no monthly reports to display
                 </TableCell>
               </TableRow>

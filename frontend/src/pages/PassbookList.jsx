@@ -4,7 +4,6 @@ import Common from '../shared/Common'
 import { Col } from 'reactstrap'
 import '../styles/passbook-list.css'
 
-
 const PassbookList = () => {
   return (
     <div className='passbook__container'>

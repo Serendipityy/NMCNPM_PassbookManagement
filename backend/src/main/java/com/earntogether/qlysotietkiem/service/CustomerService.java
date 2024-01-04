@@ -61,7 +61,7 @@ public class CustomerService {
         // Create passbook instance
         var passbook = new Passbook(null, passbookCode,
                 customer.getCustomerCode(), 1, term,
-                cusPassbookDto.dateOpened(), cusPassbookDto.money());
+                cusPassbookDto.dateOpened(), cusPassbookDto.dateOpened(), cusPassbookDto.money());
         customerRepository.save(customer);
         passbookService.insertPassbook(passbook);
         System.out.println("-> Inserted " + customer);

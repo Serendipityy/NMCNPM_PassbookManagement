@@ -191,7 +191,7 @@ const Create = () => {
               </div>
             </div>
 
-            <div className="input last">
+            <div className="input last input__child">
               <label htmlFor="deposit">Deposit</label>
               <FormGroup className="content d-flex align-items-center gap-2">
                 <input

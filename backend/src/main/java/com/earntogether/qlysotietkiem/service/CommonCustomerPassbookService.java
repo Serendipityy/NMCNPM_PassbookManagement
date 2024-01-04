@@ -53,11 +53,12 @@ public class CommonCustomerPassbookService {
     }
 
     public void updateMoneyByPassbookCode( @Positive int code,
-                                           @NotNull BigInteger money){
+                                           @NotNull BigInteger money, LocalDate date){
         var passbook = passbookRepository.findByPassbookCodeAndStatus(code, 1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                         "passbook with passbook code: " + code));
         passbook.setMoney(money);
+        passbook.setDateTransaction(date);
         System.out.println(passbook);
         passbookRepository.save(passbook);
     }
@@ -101,9 +102,9 @@ public class CommonCustomerPassbookService {
     public BigInteger calculateInterestRate(Passbook passbook){
         // Tính số lần đáo hạn
         var term = passbook.getTerm();
-        if (passbook.getDateCreated().isBefore(LocalDate.now())) {
+        if (passbook.getDateTransaction().isBefore(LocalDate.now())) {
             int monthsFromPassbookOpened = Math.toIntExact(ChronoUnit.MONTHS
-                    .between(passbook.getDateCreated(), LocalDate.now()));
+                    .between(passbook.getDateTransaction(), LocalDate.now()));
             // Dùng floorDiv để lấy phần nguyên cho an toàn
             int timesMaturity = Math.floorDiv(monthsFromPassbookOpened,
                     term.getMonthsOfTerm());

@@ -28,6 +28,8 @@ public class Passbook {
     private Term term;
     @Field(name = "dateCreated")
     private LocalDate dateCreated;
+    @Field(name = "dateTransaction")
+    private LocalDate dateTransaction;
     @Field(name = "money")
     private BigInteger money;
 }

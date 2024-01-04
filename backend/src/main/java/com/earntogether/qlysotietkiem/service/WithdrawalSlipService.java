@@ -83,7 +83,7 @@ public class WithdrawalSlipService {
             }
         }
         commonCusPassbookService.updateMoneyByPassbookCode(passbook.getPassbookCode(),
-                moneyLeft);
+                moneyLeft, withdrawalSlipDto.withdrawalDate());
         // Close passbook if customer has taken the whole money out 
         if (moneyLeft.equals(BigInteger.valueOf(0))) {
             commonCusPassbookService.deleteCustomerByCustomerCode(customer.getCustomerCode());

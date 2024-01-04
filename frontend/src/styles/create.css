@@ -34,6 +34,15 @@
 
 .input__child {
     width: 50%;
+    & input, & select{
+        transition: all .8s ease;
+    }
+    & input:focus{
+        background-color: white;
+    }
+    & select:focus{
+        background-color: white;
+    }
 }
 
 .last {
