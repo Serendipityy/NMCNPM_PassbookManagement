@@ -37,6 +37,10 @@ tbody tr:nth-child(2n) {
     background: #ABFFC3;
 }
 
+.table .type._other {
+    background: rgb(228, 178, 255);
+}
+
 .change__btn {
     width: 15%;
     font-weight: 600 !important;

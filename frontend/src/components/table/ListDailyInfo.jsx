@@ -62,14 +62,12 @@ const ListDailyInfo = ({ data }) => {
                         ? "Non-term"
                         : item.type === 1
                         ? "3 months"
-                        : "6 months"
+                        : item.type ===2 ? 
+                        "6 months"
+                        : "other"
                     }`}
                   >
-                    {item.type === 0
-                      ? "Non-term"
-                      : item.type === 1
-                      ? "3 months"
-                      : "6 months"}
+                    {item.termName}
                   </span>
                 </TableCell>
                 <TableCell className="tableCell">{item.totalRevenue}</TableCell>
