@@ -108,8 +108,10 @@ const RegulationTable = () => {
                           ? "Non-term"
                           : item.type === 1
                           ? "3 months"
-                          : "6 months"
-                      }`}
+                          : item.type === 2
+                          ? "6 months"
+                          : "other"
+                        }`}
                     >
                       {item.name}
                     </span>
