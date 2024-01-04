@@ -9,10 +9,8 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.Period;
+import java.math.BigDecimal; 
+import java.time.LocalDate; 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +51,7 @@ public class CommonCustomerPassbookService {
     }
 
     public void updateMoneyByPassbookCode( @Positive int code,
-                                           @NotNull BigInteger money, LocalDate date){
+                                           @NotNull BigDecimal money, LocalDate date){
         var passbook = passbookRepository.findByPassbookCodeAndStatus(code, 1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                         "passbook with passbook code: " + code));
@@ -79,27 +77,27 @@ public class CommonCustomerPassbookService {
     }
 
     // DepositSlip Service
-    public BigInteger getSumDepositMoney(int type, @NotNull LocalDate date) {
+    public BigDecimal getSumDepositMoney(int type, @NotNull LocalDate date) {
         List<DepositSlip> listDepositSlip = depositSlipRepository
                 .findByTypeAndDepositDate(type, date);
         var sumMoney = listDepositSlip.stream()
                 .map(DepositSlip::getMoney)
-                .reduce(BigInteger.valueOf(0), BigInteger::add);
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
         return sumMoney;
     }
 
     // WithdrawalSlip Service
-    public BigInteger getSumWithdrawalMoney(int type, @NotNull LocalDate date) {
+    public BigDecimal getSumWithdrawalMoney(int type, @NotNull LocalDate date) {
         List<WithdrawalSlip> listWithdrawalSlip = withdrawalSlipRepository
                 .findByTypeAndWithdrawalDate(type, date);
         var sumMoney = listWithdrawalSlip.stream()
                 .map(WithdrawalSlip::getMoney)
-                .reduce(BigInteger.valueOf(0), BigInteger::add);
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
         return sumMoney;
     }
 
     // Passbook Service
-    public BigInteger calculateInterestRate(Passbook passbook){
+    public BigDecimal calculateInterestRate(Passbook passbook){
         // Tính số lần đáo hạn
         var term = passbook.getTerm();
         if (passbook.getDateTransaction().isBefore(LocalDate.now())) {
@@ -111,8 +109,8 @@ public class CommonCustomerPassbookService {
             double interestRate = (double) timesMaturity * term.getInterestRate()
                     * (double) term.getMonthsOfTerm()
                     * passbook.getMoney().doubleValue();
-            return BigDecimal.valueOf(interestRate).toBigInteger();
+            return BigDecimal.valueOf(interestRate);
         }
-        return BigInteger.valueOf(0);
+        return BigDecimal.valueOf(0);
     }
 }

@@ -11,7 +11,7 @@ import com.earntogether.qlysotietkiem.utils.converter.WithdrawalConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
+import java.math.BigDecimal; 
 import java.time.LocalDate; 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -56,7 +56,7 @@ public class WithdrawalSlipService {
         var interestMoney = commonCusPassbookService
                 .calculateInterestRate(passbook);
         var totalMoney = passbook.getMoney().add(interestMoney);
-        var moneyLeft = BigInteger.valueOf(0);
+        var moneyLeft = BigDecimal.valueOf(0);
         if (term.getType() == 0) {
             // Check taken money with số dư hiện có(gồm lãi)
             if (withdrawalSlipDto.money().compareTo(totalMoney) > 0) {
@@ -85,7 +85,7 @@ public class WithdrawalSlipService {
         commonCusPassbookService.updateMoneyByPassbookCode(passbook.getPassbookCode(),
                 moneyLeft, withdrawalSlipDto.withdrawalDate());
         // Close passbook if customer has taken the whole money out 
-        if (moneyLeft.equals(BigInteger.valueOf(0))) {
+        if (moneyLeft.equals(BigDecimal.valueOf(0))) {
             commonCusPassbookService.deleteCustomerByCustomerCode(customer.getCustomerCode());
         }
         var withdrawalSlip = WithdrawalConverter.convertDTOtoEntity(

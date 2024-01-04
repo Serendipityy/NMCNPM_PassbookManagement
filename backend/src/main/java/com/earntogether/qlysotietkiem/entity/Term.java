@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.math.BigInteger;
+import java.math.BigDecimal; 
 
 @Data
 @NoArgsConstructor
@@ -28,9 +28,9 @@ public class Term {
     @Field(name = "interestRate")
     private Double interestRate;
     @Field(name = "minDeposit")
-    private BigInteger minDeposit;
+    private BigDecimal minDeposit;
     @Field("minAdditionalDeposit")
-    private BigInteger minAdditionalDeposit;
+    private BigDecimal minAdditionalDeposit;
     @Field(name = "daysWithdrawn")
     private int daysWithdrawn;
 }

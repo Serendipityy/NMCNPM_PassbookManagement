@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.math.BigInteger;
+import java.math.BigDecimal; 
 import java.time.LocalDate;
 
 @Data
@@ -29,5 +29,5 @@ public class DepositSlip {
     @Field(name = "depositDate")
     private LocalDate depositDate;
     @Field(name = "money")
-    private BigInteger money;
+    private BigDecimal money;
 }

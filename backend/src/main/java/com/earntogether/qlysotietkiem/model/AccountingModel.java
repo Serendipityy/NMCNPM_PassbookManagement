@@ -1,9 +1,9 @@
 package com.earntogether.qlysotietkiem.model;
 
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 public record AccountingModel(String termName, int type,
-                              BigInteger totalRevenue,
-                              BigInteger totalExpenditure
+                              BigDecimal totalRevenue,
+                              BigDecimal totalExpenditure
 ) {}

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.math.BigInteger;
+import java.math.BigDecimal; 
 import java.time.LocalDate;
 
 @Data
@@ -31,5 +31,5 @@ public class Passbook {
     @Field(name = "dateTransaction")
     private LocalDate dateTransaction;
     @Field(name = "money")
-    private BigInteger money;
+    private BigDecimal money;
 }
