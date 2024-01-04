@@ -89,6 +89,7 @@ const ModalPassbook = (props) => {
                     id="typeName"
                     value={data.typeName}
                     onChange={handleChange}
+                    disabled={props.dataModal.state === 1} // Disable if state is 1 (change type)
                   />
                 </FormGroup>
               </div>
