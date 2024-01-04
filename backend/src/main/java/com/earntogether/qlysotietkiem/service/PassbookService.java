@@ -72,10 +72,10 @@ public class PassbookService {
     }
 
     public List<AccountingModel> getDailyTurnover(LocalDate date) {
-        if(date.isAfter(LocalDate.now())){
-            throw new DataNotValidException( "Lookup date cannot " +
-                    "exceed current date");
-        }
+        // if(date.isAfter(LocalDate.now())){
+        //     throw new DataNotValidException( "Lookup date cannot " +
+        //             "exceed current date");
+        // }
         List<AccountingModel> revenueList = new LinkedList<>();
         var termList = termRepository.findAll();
         termList.forEach(term -> {
