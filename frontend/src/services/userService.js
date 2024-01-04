@@ -25,7 +25,7 @@ const listPassbook = () => {
 };
 const paginatePassbook = (page) => {
   return axios.get(
-    `http://localhost:8080/api/passbook/lookup?page=${page}&per_page=3`
+    `http://localhost:8080/api/passbook/lookup?page=${page}&per_page=8`
   );
 };
 const putMoney = async (data) => {
