@@ -28,14 +28,10 @@ public class PassbookService {
     private CommonCustomerPassbookService commonCustomerPassbookService;
 
     // Will be considered to delete
-    public List<Passbook> getAllPassbook(){
+    public List<Passbook> getAllPassbook() {
         return passbookRepository.findAll();
     }
-
-    public Optional<Passbook> getPassbookByCode(int code) {
-        return passbookRepository.findByPassbookCode(code);
-    }
-
+    
     public Optional<Passbook> getPassbookByCodeAndStatus(int code, int status) {
         return passbookRepository.findByPassbookCodeAndStatus(code, status);
     }

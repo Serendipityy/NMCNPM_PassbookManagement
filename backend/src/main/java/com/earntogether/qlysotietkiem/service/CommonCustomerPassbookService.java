@@ -54,7 +54,7 @@ public class CommonCustomerPassbookService {
 
     public void updateMoneyByPassbookCode( @Positive int code,
                                            @NotNull BigInteger money){
-        var passbook = passbookRepository.findByPassbookCode(code)
+        var passbook = passbookRepository.findByPassbookCodeAndStatus(code, 1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                         "passbook with passbook code: " + code));
         passbook.setMoney(money);
