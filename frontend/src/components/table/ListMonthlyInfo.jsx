@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./listInfo.css";
 
-const ListlyInfo = ({ data }) => {
+const ListlyInfo = ({ data, confirmed }) => {
   // const rows = [
   //     {
   //         id: 1,
@@ -54,7 +54,8 @@ const ListlyInfo = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data &&
+        {confirmed &&
+            (data && data.length > 0 ? (
             data.map((item, index) => (
               <TableRow key={index}>
                 <TableCell className="tableCell">{index + 1}</TableCell>
@@ -65,7 +66,14 @@ const ListlyInfo = ({ data }) => {
                   {item.numOfOpened - item.numOfClosed}
                 </TableCell>
               </TableRow>
-            ))}
+            ))
+          ) : (
+            <TableRow>
+                <TableCell colSpan={5} className="tableCell">
+                  There are no monthly reports to display
+                </TableCell>
+              </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
