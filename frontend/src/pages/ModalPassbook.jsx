@@ -80,8 +80,8 @@ const ModalPassbook = (props) => {
         </ModalHeader>
         <ModalBody>
           <Form>
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input">
+              <div className="input__child">
                 <FormGroup className="change__content">
                   <Label>Type(Months)</Label>
                   <Input
@@ -94,7 +94,7 @@ const ModalPassbook = (props) => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <FormGroup className="change__content">
                   <Label>Minimum deposit amount</Label>
                   <Input
@@ -107,8 +107,8 @@ const ModalPassbook = (props) => {
               </div>
             </div>
 
-            <div className="input d-flex gap-5">
-              <div className="w-50">
+            <div className="input">
+              <div className="input__child">
                 <FormGroup className="change__content">
                   <Label>Minimum sending time:</Label>
                   <Input
@@ -120,7 +120,7 @@ const ModalPassbook = (props) => {
                 </FormGroup>
               </div>
 
-              <div className="w-50">
+              <div className="input__child">
                 <FormGroup className="change__content">
                   <Label>Interest rate:</Label>
                   <Input
