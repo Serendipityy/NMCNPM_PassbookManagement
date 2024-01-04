@@ -34,12 +34,12 @@ public class DepositSlipService {
                         "Does not exist customer: " + depositSlipDto.customerName() +
                                 " with passbook code: " + depositSlipDto.passbookCode()));
         // Check type of the indicated passbook
-        var passbook = passbookRepository.findByPassbookCode(customer.getPassbookCode())
+        var passbook = passbookRepository.findByPassbookCodeAndStatus(customer.getPassbookCode(),1)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found " +
                                         "passbook with passbook code: " + customer.getPassbookCode()));
-        if (passbook.getStatus() == 0) {
-            throw new DataNotValidException("Can not deposit with closed passbook");
-        }
+        // if (passbook.getStatus() == 0) {
+        //     throw new DataNotValidException("Can not deposit with closed passbook");
+        // }
                         var term = passbook.getTerm();
         if (term.getType() != 0) {
             throw new DataNotValidException("Only accept deposits " +
@@ -48,12 +48,7 @@ public class DepositSlipService {
         if (depositSlipDto.money().compareTo(term.getMinDeposit()) < 0) {
             throw new DataNotValidException("Deposit amount cannot be " +
                     "less than minimum deposit amount of " + term.getMinDeposit());
-        }
-        // Will be deleted
-        // if(depositSlipDto.depositDate().isAfter(LocalDate.now())){
-        //     throw new DataNotValidException("Deposit date cannot" +
-        //                 " exceed current date");
-        // }
+        } 
 
         var moneyAdded = passbook.getMoney().add(depositSlipDto.money());
         commonCusPassbookService.updateMoneyByPassbookCode(

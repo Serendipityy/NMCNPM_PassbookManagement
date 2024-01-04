@@ -28,12 +28,12 @@ public class PassbookService {
     private CommonCustomerPassbookService commonCustomerPassbookService;
 
     // Will be considered to delete
-    public List<Passbook> getAllPassbook(){
+    public List<Passbook> getAllPassbook() {
         return passbookRepository.findAll();
     }
-
-    public Optional<Passbook> getPassbookByCode(int code) {
-        return passbookRepository.findByPassbookCode(code);
+    
+    public Optional<Passbook> getPassbookByCodeAndStatus(int code, int status) {
+        return passbookRepository.findByPassbookCodeAndStatus(code, status);
     }
 
     public void insertPassbook(Passbook passbook) {
@@ -72,10 +72,10 @@ public class PassbookService {
     }
 
     public List<AccountingModel> getDailyTurnover(LocalDate date) {
-        if(date.isAfter(LocalDate.now())){
-            throw new DataNotValidException( "Lookup date cannot " +
-                    "exceed current date");
-        }
+        // if(date.isAfter(LocalDate.now())){
+        //     throw new DataNotValidException( "Lookup date cannot " +
+        //             "exceed current date");
+        // }
         List<AccountingModel> revenueList = new LinkedList<>();
         var termList = termRepository.findAll();
         termList.forEach(term -> {

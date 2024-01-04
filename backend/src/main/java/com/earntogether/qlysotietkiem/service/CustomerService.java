@@ -54,7 +54,7 @@ public class CustomerService {
         customer.setCustomerCode(generateCustomerCode());
         // Check whether the indicated passbook is already exist
         int passbookCode = customer.getPassbookCode();
-        passbookService.getPassbookByCode(passbookCode).ifPresent(
+        passbookService.getPassbookByCodeAndStatus(passbookCode, 1).ifPresent(
                 passbook -> {throw new DataNotValidException("Already existed " +
                         "passbook with code: "+ passbook.getPassbookCode());}
         );
