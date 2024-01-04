@@ -5,11 +5,16 @@ import Common from "../shared/Common";
 import { Button, Form, FormGroup } from "reactstrap";
 import ListDailyInfo from "../components/table/ListDailyInfo";
 import { getDailyReport } from "../services/userService";
+import {FaSpinner} from 'react-icons/fa'
+
 function DailyReport() {
   const [date, setDate] = useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const apiData = await getDailyReport(date);
       console.log("check apiData: ", apiData);
@@ -23,8 +28,11 @@ function DailyReport() {
     } catch (error) {
       // Handle errors as needed
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
   const handleChange = (e) => {
     console.log("test: ", e.target.value);
     setDate(e.target.value);
@@ -59,10 +67,12 @@ function DailyReport() {
               </FormGroup>
             </div>
           </Form>
+
           <div className="daily__info">
-            {/* <ListDailyInfo date={date} />
-             */}
-            <ListDailyInfo data={data} />
+            {loading ? (
+              <p><FaSpinner className="loading-icon" /> Loading...</p>
+            ) :  (
+              <ListDailyInfo data={data} /> )}
           </div>
         </div>
       </div>
